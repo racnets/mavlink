@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<mavlink>
+<include>common.xml</include>
+<messages>
+  <message name="MK_DEBUGOUT" id="100">
+	 HUCH Mikrokopter DebugOut
+	 <field name="debugout" type="array[66]">66 bytes of Debugout data. See qk_datatypes.h</field>
+  </message>
+
+  <message name="MK_EXTERN_CONTROL" id="101">
+	 <field name="remote_buttons" type="uint8_t"></field>
+	 <field name="nick" type="int8_t"></field>
+	 <field name="roll" type="int8_t"></field>
+	 <field name="yaw" type="int8_t"></field>
+	 <field name="gas" type="uint16_t"></field>
+	 <field name="height" type="uint16_t"></field>
+	 <field name="AP_flags" type="uint8_t"></field>
+	 <field name="frame" type="uint8_t"></field>
+	 <field name="config" type="uint8_t"></field>
+  </message>
+
+	<!-- <message name="MK_DEBUGOUT" id="100"> -->
+	<!-- 	HUCH Mikrokopter DebugOut -->
+	<!-- 	<field name="d1" type="uint8_t"></field> -->
+	<!-- 	<field name="d2" type="uint8_t"></field> -->
+	<!-- 	<\!-- ruby -e '32.times {|i| print "<field name=\"a" + i.to_s() + "\" type=\"uint16_t\">DebugOut Analog #" + i.to_s() + "</field>\n" }' -\-> -->
+	<!-- 	<field name="a0" type="uint16_t">DebugOut Analog #0</field> -->
+	<!-- 	<field name="a1" type="uint16_t">DebugOut Analog #1</field> -->
+	<!-- 	<field name="a2" type="uint16_t">DebugOut Analog #2</field> -->
+	<!-- 	<field name="a3" type="uint16_t">DebugOut Analog #3</field> -->
+	<!-- 	<field name="a4" type="uint16_t">DebugOut Analog #4</field> -->
+	<!-- 	<field name="a5" type="uint16_t">DebugOut Analog #5</field> -->
+	<!-- 	<field name="a6" type="uint16_t">DebugOut Analog #6</field> -->
+	<!-- 	<field name="a7" type="uint16_t">DebugOut Analog #7</field> -->
+	<!-- 	<field name="a8" type="uint16_t">DebugOut Analog #8</field> -->
+	<!-- 	<field name="a9" type="uint16_t">DebugOut Analog #9</field> -->
+	<!-- 	<field name="a10" type="uint16_t">DebugOut Analog #10</field> -->
+	<!-- 	<field name="a11" type="uint16_t">DebugOut Analog #11</field> -->
+	<!-- 	<field name="a12" type="uint16_t">DebugOut Analog #12</field> -->
+	<!-- 	<field name="a13" type="uint16_t">DebugOut Analog #13</field> -->
+	<!-- 	<field name="a14" type="uint16_t">DebugOut Analog #14</field> -->
+	<!-- 	<field name="a15" type="uint16_t">DebugOut Analog #15</field> -->
+	<!-- 	<field name="a16" type="uint16_t">DebugOut Analog #16</field> -->
+	<!-- 	<field name="a17" type="uint16_t">DebugOut Analog #17</field> -->
+	<!-- 	<field name="a18" type="uint16_t">DebugOut Analog #18</field> -->
+	<!-- 	<field name="a19" type="uint16_t">DebugOut Analog #19</field> -->
+	<!-- 	<field name="a20" type="uint16_t">DebugOut Analog #20</field> -->
+	<!-- 	<field name="a21" type="uint16_t">DebugOut Analog #21</field> -->
+	<!-- 	<field name="a22" type="uint16_t">DebugOut Analog #22</field> -->
+	<!-- 	<field name="a23" type="uint16_t">DebugOut Analog #23</field> -->
+	<!-- 	<field name="a24" type="uint16_t">DebugOut Analog #24</field> -->
+	<!-- 	<field name="a25" type="uint16_t">DebugOut Analog #25</field> -->
+	<!-- 	<field name="a26" type="uint16_t">DebugOut Analog #26</field> -->
+	<!-- 	<field name="a27" type="uint16_t">DebugOut Analog #27</field> -->
+	<!-- 	<field name="a28" type="uint16_t">DebugOut Analog #28</field> -->
+	<!-- 	<field name="a29" type="uint16_t">DebugOut Analog #29</field> -->
+	<!-- 	<field name="a30" type="uint16_t">DebugOut Analog #30</field> -->
+	<!-- 	<field name="a31" type="uint16_t">DebugOut Analog #31</field> -->
+	<!-- </message> -->
+ </messages>
+</mavlink>
