@@ -1,7 +1,7 @@
 /** @file
  *	@brief MAVLink comm protocol.
  *	@see http://pixhawk.ethz.ch/software/mavlink
- *	 Generated on Monday, November 1 2010, 15:19 UTC
+ *	 Generated on Wednesday, November 3 2010, 15:58 UTC
  */
 #ifndef HUCH_H
 #define HUCH_H
@@ -19,6 +19,10 @@ extern "C" {
 #include "../common/common.h"
 #include "./mavlink_msg_mk_debugout.h"
 #include "./mavlink_msg_mk_extern_control.h"
+#include "./mavlink_msg_huch_exp_ctrl.h"
+#include "./mavlink_msg_huch_attitude.h"
+#include "./mavlink_msg_huch_altitude.h"
+#include "./mavlink_msg_huch_ranger.h"
 #ifdef __cplusplus
 }
 #endif

@@ -19,6 +19,35 @@
 	 <field name="config" type="uint8_t"></field>
   </message>
 
+  <message name="HUCH_EXP_CTRL" id="102">
+	 <field name="status" type="uint8_t"></field>
+	 <field name="rx" type="array[9]"></field>
+	 <field name="tx" type="array[2]"></field>
+  </message>
+
+  <message name="HUCH_ATTITUDE" id="103">
+	 <field name="xacc" type="int16_t"></field>
+	 <field name="yacc" type="int16_t"></field>
+	 <field name="zacc" type="int16_t"></field>
+	 <field name="xgyro" type="int16_t"></field>
+	 <field name="ygyro" type="int16_t"></field>
+	 <field name="zgyro" type="int16_t"></field>
+	 <field name="xmag" type="int16_t"></field>
+	 <field name="ymag" type="int16_t"></field>
+	 <field name="zmag" type="int16_t"></field>
+  </message>
+
+  <message name="HUCH_ALTITUDE" id="104">
+	 <field name="baro" type="uint16_t"></field>
+	 <field name="baroref" type="int16_t"></field>
+  </message>
+
+  <message name="HUCH_RANGER" id="105">
+	 <field name="ranger1" type="uint16_t"></field>
+	 <field name="ranger2" type="uint16_t"></field>
+	 <field name="ranger3" type="uint16_t"></field>
+  </message>
+
 	<!-- <message name="MK_DEBUGOUT" id="100"> -->
 	<!-- 	HUCH Mikrokopter DebugOut -->
 	<!-- 	<field name="d1" type="uint8_t"></field> -->
