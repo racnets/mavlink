@@ -29,6 +29,10 @@
 	 <field name="xacc" type="int16_t"></field>
 	 <field name="yacc" type="int16_t"></field>
 	 <field name="zacc" type="int16_t"></field>
+	 <field name="zaccraw" type="int16_t"></field>
+	 <field name="xaccmean" type="int16_t"></field>
+	 <field name="yaccmean" type="int16_t"></field>
+	 <field name="zaccmean" type="int16_t"></field>
 	 <field name="xgyro" type="int16_t"></field>
 	 <field name="ygyro" type="int16_t"></field>
 	 <field name="zgyro" type="int16_t"></field>
