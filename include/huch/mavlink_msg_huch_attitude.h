@@ -14,6 +14,9 @@ typedef struct __mavlink_huch_attitude_t
 	int16_t xgyro; ///< 
 	int16_t ygyro; ///< 
 	int16_t zgyro; ///< 
+	int32_t xgyroint; ///< 
+	int32_t ygyroint; ///< 
+	int32_t zgyroint; ///< 
 	int16_t xmag; ///< 
 	int16_t ymag; ///< 
 	int16_t zmag; ///< 
@@ -35,12 +38,15 @@ typedef struct __mavlink_huch_attitude_t
  * @param xgyro 
  * @param ygyro 
  * @param zgyro 
+ * @param xgyroint 
+ * @param ygyroint 
+ * @param zgyroint 
  * @param xmag 
  * @param ymag 
  * @param zmag 
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_huch_attitude_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, int16_t xacc, int16_t yacc, int16_t zacc, int16_t zaccraw, int16_t xaccmean, int16_t yaccmean, int16_t zaccmean, int16_t xgyro, int16_t ygyro, int16_t zgyro, int16_t xmag, int16_t ymag, int16_t zmag)
+static inline uint16_t mavlink_msg_huch_attitude_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, int16_t xacc, int16_t yacc, int16_t zacc, int16_t zaccraw, int16_t xaccmean, int16_t yaccmean, int16_t zaccmean, int16_t xgyro, int16_t ygyro, int16_t zgyro, int32_t xgyroint, int32_t ygyroint, int32_t zgyroint, int16_t xmag, int16_t ymag, int16_t zmag)
 {
 	uint16_t i = 0;
 	msg->msgid = MAVLINK_MSG_ID_HUCH_ATTITUDE;
@@ -55,6 +61,9 @@ static inline uint16_t mavlink_msg_huch_attitude_pack(uint8_t system_id, uint8_t
 	i += put_int16_t_by_index(xgyro, i, msg->payload); //
 	i += put_int16_t_by_index(ygyro, i, msg->payload); //
 	i += put_int16_t_by_index(zgyro, i, msg->payload); //
+	i += put_int32_t_by_index(xgyroint, i, msg->payload); //
+	i += put_int32_t_by_index(ygyroint, i, msg->payload); //
+	i += put_int32_t_by_index(zgyroint, i, msg->payload); //
 	i += put_int16_t_by_index(xmag, i, msg->payload); //
 	i += put_int16_t_by_index(ymag, i, msg->payload); //
 	i += put_int16_t_by_index(zmag, i, msg->payload); //
@@ -64,15 +73,15 @@ static inline uint16_t mavlink_msg_huch_attitude_pack(uint8_t system_id, uint8_t
 
 static inline uint16_t mavlink_msg_huch_attitude_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_huch_attitude_t* huch_attitude)
 {
-	return mavlink_msg_huch_attitude_pack(system_id, component_id, msg, huch_attitude->xacc, huch_attitude->yacc, huch_attitude->zacc, huch_attitude->zaccraw, huch_attitude->xaccmean, huch_attitude->yaccmean, huch_attitude->zaccmean, huch_attitude->xgyro, huch_attitude->ygyro, huch_attitude->zgyro, huch_attitude->xmag, huch_attitude->ymag, huch_attitude->zmag);
+	return mavlink_msg_huch_attitude_pack(system_id, component_id, msg, huch_attitude->xacc, huch_attitude->yacc, huch_attitude->zacc, huch_attitude->zaccraw, huch_attitude->xaccmean, huch_attitude->yaccmean, huch_attitude->zaccmean, huch_attitude->xgyro, huch_attitude->ygyro, huch_attitude->zgyro, huch_attitude->xgyroint, huch_attitude->ygyroint, huch_attitude->zgyroint, huch_attitude->xmag, huch_attitude->ymag, huch_attitude->zmag);
 }
 
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_huch_attitude_send(mavlink_channel_t chan, int16_t xacc, int16_t yacc, int16_t zacc, int16_t zaccraw, int16_t xaccmean, int16_t yaccmean, int16_t zaccmean, int16_t xgyro, int16_t ygyro, int16_t zgyro, int16_t xmag, int16_t ymag, int16_t zmag)
+static inline void mavlink_msg_huch_attitude_send(mavlink_channel_t chan, int16_t xacc, int16_t yacc, int16_t zacc, int16_t zaccraw, int16_t xaccmean, int16_t yaccmean, int16_t zaccmean, int16_t xgyro, int16_t ygyro, int16_t zgyro, int32_t xgyroint, int32_t ygyroint, int32_t zgyroint, int16_t xmag, int16_t ymag, int16_t zmag)
 {
 	mavlink_message_t msg;
-	mavlink_msg_huch_attitude_pack(mavlink_system.sysid, mavlink_system.compid, &msg, xacc, yacc, zacc, zaccraw, xaccmean, yaccmean, zaccmean, xgyro, ygyro, zgyro, xmag, ymag, zmag);
+	mavlink_msg_huch_attitude_pack(mavlink_system.sysid, mavlink_system.compid, &msg, xacc, yacc, zacc, zaccraw, xaccmean, yaccmean, zaccmean, xgyro, ygyro, zgyro, xgyroint, ygyroint, zgyroint, xmag, ymag, zmag);
 	mavlink_send_uart(chan, &msg);
 }
 
@@ -210,6 +219,51 @@ static inline int16_t mavlink_msg_huch_attitude_get_zgyro(const mavlink_message_
 }
 
 /**
+ * @brief Get field xgyroint from huch_attitude message
+ *
+ * @return 
+ */
+static inline int32_t mavlink_msg_huch_attitude_get_xgyroint(const mavlink_message_t* msg)
+{
+	generic_32bit r;
+	r.b[3] = (msg->payload+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t))[0];
+	r.b[2] = (msg->payload+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t))[1];
+	r.b[1] = (msg->payload+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t))[2];
+	r.b[0] = (msg->payload+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t))[3];
+	return (int32_t)r.i;
+}
+
+/**
+ * @brief Get field ygyroint from huch_attitude message
+ *
+ * @return 
+ */
+static inline int32_t mavlink_msg_huch_attitude_get_ygyroint(const mavlink_message_t* msg)
+{
+	generic_32bit r;
+	r.b[3] = (msg->payload+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int32_t))[0];
+	r.b[2] = (msg->payload+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int32_t))[1];
+	r.b[1] = (msg->payload+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int32_t))[2];
+	r.b[0] = (msg->payload+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int32_t))[3];
+	return (int32_t)r.i;
+}
+
+/**
+ * @brief Get field zgyroint from huch_attitude message
+ *
+ * @return 
+ */
+static inline int32_t mavlink_msg_huch_attitude_get_zgyroint(const mavlink_message_t* msg)
+{
+	generic_32bit r;
+	r.b[3] = (msg->payload+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int32_t)+sizeof(int32_t))[0];
+	r.b[2] = (msg->payload+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int32_t)+sizeof(int32_t))[1];
+	r.b[1] = (msg->payload+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int32_t)+sizeof(int32_t))[2];
+	r.b[0] = (msg->payload+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int32_t)+sizeof(int32_t))[3];
+	return (int32_t)r.i;
+}
+
+/**
  * @brief Get field xmag from huch_attitude message
  *
  * @return 
@@ -217,8 +271,8 @@ static inline int16_t mavlink_msg_huch_attitude_get_zgyro(const mavlink_message_
 static inline int16_t mavlink_msg_huch_attitude_get_xmag(const mavlink_message_t* msg)
 {
 	generic_16bit r;
-	r.b[1] = (msg->payload+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t))[0];
-	r.b[0] = (msg->payload+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t))[1];
+	r.b[1] = (msg->payload+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int32_t)+sizeof(int32_t)+sizeof(int32_t))[0];
+	r.b[0] = (msg->payload+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int32_t)+sizeof(int32_t)+sizeof(int32_t))[1];
 	return (int16_t)r.s;
 }
 
@@ -230,8 +284,8 @@ static inline int16_t mavlink_msg_huch_attitude_get_xmag(const mavlink_message_t
 static inline int16_t mavlink_msg_huch_attitude_get_ymag(const mavlink_message_t* msg)
 {
 	generic_16bit r;
-	r.b[1] = (msg->payload+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t))[0];
-	r.b[0] = (msg->payload+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t))[1];
+	r.b[1] = (msg->payload+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int32_t)+sizeof(int32_t)+sizeof(int32_t)+sizeof(int16_t))[0];
+	r.b[0] = (msg->payload+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int32_t)+sizeof(int32_t)+sizeof(int32_t)+sizeof(int16_t))[1];
 	return (int16_t)r.s;
 }
 
@@ -243,8 +297,8 @@ static inline int16_t mavlink_msg_huch_attitude_get_ymag(const mavlink_message_t
 static inline int16_t mavlink_msg_huch_attitude_get_zmag(const mavlink_message_t* msg)
 {
 	generic_16bit r;
-	r.b[1] = (msg->payload+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t))[0];
-	r.b[0] = (msg->payload+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t))[1];
+	r.b[1] = (msg->payload+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int32_t)+sizeof(int32_t)+sizeof(int32_t)+sizeof(int16_t)+sizeof(int16_t))[0];
+	r.b[0] = (msg->payload+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int16_t)+sizeof(int32_t)+sizeof(int32_t)+sizeof(int32_t)+sizeof(int16_t)+sizeof(int16_t))[1];
 	return (int16_t)r.s;
 }
 
@@ -260,6 +314,9 @@ static inline void mavlink_msg_huch_attitude_decode(const mavlink_message_t* msg
 	huch_attitude->xgyro = mavlink_msg_huch_attitude_get_xgyro(msg);
 	huch_attitude->ygyro = mavlink_msg_huch_attitude_get_ygyro(msg);
 	huch_attitude->zgyro = mavlink_msg_huch_attitude_get_zgyro(msg);
+	huch_attitude->xgyroint = mavlink_msg_huch_attitude_get_xgyroint(msg);
+	huch_attitude->ygyroint = mavlink_msg_huch_attitude_get_ygyroint(msg);
+	huch_attitude->zgyroint = mavlink_msg_huch_attitude_get_zgyroint(msg);
 	huch_attitude->xmag = mavlink_msg_huch_attitude_get_xmag(msg);
 	huch_attitude->ymag = mavlink_msg_huch_attitude_get_ymag(msg);
 	huch_attitude->zmag = mavlink_msg_huch_attitude_get_zmag(msg);

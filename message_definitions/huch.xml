@@ -36,6 +36,9 @@
 	 <field name="xgyro" type="int16_t"></field>
 	 <field name="ygyro" type="int16_t"></field>
 	 <field name="zgyro" type="int16_t"></field>
+	 <field name="xgyroint" type="int32_t"></field>
+	 <field name="ygyroint" type="int32_t"></field>
+	 <field name="zgyroint" type="int32_t"></field>
 	 <field name="xmag" type="int16_t"></field>
 	 <field name="ymag" type="int16_t"></field>
 	 <field name="zmag" type="int16_t"></field>
