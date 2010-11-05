@@ -55,11 +55,17 @@
 	 <field name="ranger3" type="uint16_t"></field>
   </message>
 
+<message name="HUCH_BMP085" id="106">
+	<field name="pressure" type="int32_t">pressure in Pa</field>
+	<field name="temperature" type="int16_t">temperature in 0.1C</field>
+	<field name="timestamp" type="uint32_t">time in us</field>
+	<field name="height" type="float">height in meter</field> 
+</message>
 	<!-- <message name="MK_DEBUGOUT" id="100"> -->
 	<!-- 	HUCH Mikrokopter DebugOut -->
 	<!-- 	<field name="d1" type="uint8_t"></field> -->
 	<!-- 	<field name="d2" type="uint8_t"></field> -->
-	<!-- 	<\!-- ruby -e '32.times {|i| print "<field name=\"a" + i.to_s() + "\" type=\"uint16_t\">DebugOut Analog #" + i.to_s() + "</field>\n" }' -\-> -->
+	<!--	ruby -e '32.times {|i| print "<field name=\"a" + i.to_s() + "\" type=\"uint16_t\">DebugOut Analog #" + i.to_s() + "</field>\n" }' -->
 	<!-- 	<field name="a0" type="uint16_t">DebugOut Analog #0</field> -->
 	<!-- 	<field name="a1" type="uint16_t">DebugOut Analog #1</field> -->
 	<!-- 	<field name="a2" type="uint16_t">DebugOut Analog #2</field> -->
