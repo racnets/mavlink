@@ -61,6 +61,15 @@
 	<field name="timestamp" type="uint32_t">time in us</field>
 	<field name="height" type="float">height in meter</field> 
 </message>
+
+  <message name="HUCH_EXP_CTRL_RX" id="107">
+	 <field name="version" type="uint8_t">expansion control RX version</field>
+	 <field name="value0" type="uint16_t">expansion control RX value 0</field>
+	 <field name="value1" type="uint16_t">expansion control RX value 1</field>
+	 <field name="value2" type="uint16_t">expansion control RX value 2</field>
+	 <field name="value3" type="uint16_t">expansion control RX value 3</field>
+  </message>
+
 	<!-- <message name="MK_DEBUGOUT" id="100"> -->
 	<!-- 	HUCH Mikrokopter DebugOut -->
 	<!-- 	<field name="d1" type="uint8_t"></field> -->
