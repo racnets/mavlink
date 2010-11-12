@@ -4,11 +4,11 @@
 
 typedef struct __mavlink_huch_exp_ctrl_rx_t 
 {
-	uint8_t version; ///< expansion control RX version
-	uint16_t value0; ///< expansion control RX value 0
-	uint16_t value1; ///< expansion control RX value 1
-	uint16_t value2; ///< expansion control RX value 2
-	uint16_t value3; ///< expansion control RX value 3
+	uint8_t version; ///< 
+	uint16_t value0; ///< 
+	uint16_t value1; ///< 
+	uint16_t value2; ///< 
+	uint16_t value3; ///< 
 
 } mavlink_huch_exp_ctrl_rx_t;
 
@@ -17,11 +17,11 @@ typedef struct __mavlink_huch_exp_ctrl_rx_t
 /**
  * @brief Send a huch_exp_ctrl_rx message
  *
- * @param version expansion control RX version
- * @param value0 expansion control RX value 0
- * @param value1 expansion control RX value 1
- * @param value2 expansion control RX value 2
- * @param value3 expansion control RX value 3
+ * @param version 
+ * @param value0 
+ * @param value1 
+ * @param value2 
+ * @param value3 
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_huch_exp_ctrl_rx_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, uint8_t version, uint16_t value0, uint16_t value1, uint16_t value2, uint16_t value3)
@@ -29,11 +29,11 @@ static inline uint16_t mavlink_msg_huch_exp_ctrl_rx_pack(uint8_t system_id, uint
 	uint16_t i = 0;
 	msg->msgid = MAVLINK_MSG_ID_HUCH_EXP_CTRL_RX;
 
-	i += put_uint8_t_by_index(version, i, msg->payload); //expansion control RX version
-	i += put_uint16_t_by_index(value0, i, msg->payload); //expansion control RX value 0
-	i += put_uint16_t_by_index(value1, i, msg->payload); //expansion control RX value 1
-	i += put_uint16_t_by_index(value2, i, msg->payload); //expansion control RX value 2
-	i += put_uint16_t_by_index(value3, i, msg->payload); //expansion control RX value 3
+	i += put_uint8_t_by_index(version, i, msg->payload); //
+	i += put_uint16_t_by_index(value0, i, msg->payload); //
+	i += put_uint16_t_by_index(value1, i, msg->payload); //
+	i += put_uint16_t_by_index(value2, i, msg->payload); //
+	i += put_uint16_t_by_index(value3, i, msg->payload); //
 
 	return mavlink_finalize_message(msg, system_id, component_id, i);
 }
@@ -58,7 +58,7 @@ static inline void mavlink_msg_huch_exp_ctrl_rx_send(mavlink_channel_t chan, uin
 /**
  * @brief Get field version from huch_exp_ctrl_rx message
  *
- * @return expansion control RX version
+ * @return 
  */
 static inline uint8_t mavlink_msg_huch_exp_ctrl_rx_get_version(const mavlink_message_t* msg)
 {
@@ -68,7 +68,7 @@ static inline uint8_t mavlink_msg_huch_exp_ctrl_rx_get_version(const mavlink_mes
 /**
  * @brief Get field value0 from huch_exp_ctrl_rx message
  *
- * @return expansion control RX value 0
+ * @return 
  */
 static inline uint16_t mavlink_msg_huch_exp_ctrl_rx_get_value0(const mavlink_message_t* msg)
 {
@@ -81,7 +81,7 @@ static inline uint16_t mavlink_msg_huch_exp_ctrl_rx_get_value0(const mavlink_mes
 /**
  * @brief Get field value1 from huch_exp_ctrl_rx message
  *
- * @return expansion control RX value 1
+ * @return 
  */
 static inline uint16_t mavlink_msg_huch_exp_ctrl_rx_get_value1(const mavlink_message_t* msg)
 {
@@ -94,7 +94,7 @@ static inline uint16_t mavlink_msg_huch_exp_ctrl_rx_get_value1(const mavlink_mes
 /**
  * @brief Get field value2 from huch_exp_ctrl_rx message
  *
- * @return expansion control RX value 2
+ * @return 
  */
 static inline uint16_t mavlink_msg_huch_exp_ctrl_rx_get_value2(const mavlink_message_t* msg)
 {
@@ -107,7 +107,7 @@ static inline uint16_t mavlink_msg_huch_exp_ctrl_rx_get_value2(const mavlink_mes
 /**
  * @brief Get field value3 from huch_exp_ctrl_rx message
  *
- * @return expansion control RX value 3
+ * @return 
  */
 static inline uint16_t mavlink_msg_huch_exp_ctrl_rx_get_value3(const mavlink_message_t* msg)
 {

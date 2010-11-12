@@ -1,7 +1,7 @@
 /** @file
  *	@brief MAVLink comm protocol.
  *	@see http://pixhawk.ethz.ch/software/mavlink
- *	 Generated on Wednesday, November 10 2010, 15:06 UTC
+ *	 Generated on Friday, November 12 2010, 08:26 UTC
  */
 #ifndef HUCH_H
 #define HUCH_H
