@@ -1,0 +1,7 @@
+
+wrap mavlink with SWIG for use in python
+
+to build it:
+ - install swig
+ - make
+
