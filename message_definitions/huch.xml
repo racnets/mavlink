@@ -70,6 +70,13 @@
 	 <field name="value3" type="uint16_t"></field>
   </message>
 
+<message name="HUCH_HMC5843" id="108">
+	<field name="data_x" type="float">magnetic field x-direction in Gs</field>
+	<field name="data_y" type="float">magnetic field y-direction in Gs</field>
+	<field name="data_z" type="float">magnetic field z-direction in Gs</field>
+	<field name="timestamp" type="uint32_t">time in us</field>
+</message>
+
 	<!-- <message name="MK_DEBUGOUT" id="100"> -->
 	<!-- 	HUCH Mikrokopter DebugOut -->
 	<!-- 	<field name="d1" type="uint8_t"></field> -->
