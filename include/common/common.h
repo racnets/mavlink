@@ -1,7 +1,7 @@
 /** @file
  *	@brief MAVLink comm protocol.
  *	@see http://pixhawk.ethz.ch/software/mavlink
- *	 Generated on Wednesday, November 17 2010, 14:47 UTC
+ *	 Generated on Wednesday, November 17 2010, 17:58 UTC
  */
 #ifndef COMMON_H
 #define COMMON_H
@@ -14,6 +14,11 @@ extern "C" {
 #include "../protocol.h"
 
 #define MAVLINK_ENABLED_COMMON
+
+// ENUM DEFINITIONS
+
+
+// MESSAGE DEFINITIONS
 
 #include "./mavlink_msg_heartbeat.h"
 #include "./mavlink_msg_boot.h"
@@ -35,7 +40,8 @@ extern "C" {
 #include "./mavlink_msg_gps_status.h"
 #include "./mavlink_msg_global_position.h"
 #include "./mavlink_msg_sys_status.h"
-#include "./mavlink_msg_rc_channels.h"
+#include "./mavlink_msg_rc_channels_raw.h"
+#include "./mavlink_msg_rc_channels_scaled.h"
 #include "./mavlink_msg_waypoint.h"
 #include "./mavlink_msg_waypoint_request.h"
 #include "./mavlink_msg_waypoint_set_current.h"
@@ -51,6 +57,12 @@ extern "C" {
 #include "./mavlink_msg_attitude_controller_output.h"
 #include "./mavlink_msg_position_controller_output.h"
 #include "./mavlink_msg_position_target.h"
+#include "./mavlink_msg_state_correction.h"
+#include "./mavlink_msg_set_altitude.h"
+#include "./mavlink_msg_request_data_stream.h"
+#include "./mavlink_msg_request_dynamic_gyro_calibration.h"
+#include "./mavlink_msg_request_static_calibration.h"
+#include "./mavlink_msg_manual_control.h"
 #include "./mavlink_msg_statustext.h"
 #include "./mavlink_msg_debug.h"
 #ifdef __cplusplus
