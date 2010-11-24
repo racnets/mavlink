@@ -45,7 +45,7 @@
   </message>
 
   <message name="HUCH_ALTITUDE" id="104">
-	 <field name="baro" type="uint16_t"></field>
+	 <field name="baro" type="int16_t"></field>
 	 <field name="baroref" type="int16_t"></field>
   </message>
 
