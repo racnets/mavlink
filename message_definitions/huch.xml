@@ -77,6 +77,12 @@
 	<field name="timestamp" type="uint32_t">time in us</field>
 </message>
 
+<message name="MK_FC_STATUS" id="109">
+	<field name="rssi" type="int16_t">RC Control RSSI on FlightCtrl</field>
+	<field name="batt" type="int16_t">Battery Voltage Level</field>
+	<field name="gas"  type="int16_t">Internally computed gas value</field>
+</message>
+
 	<!-- <message name="MK_DEBUGOUT" id="100"> -->
 	<!-- 	HUCH Mikrokopter DebugOut -->
 	<!-- 	<field name="d1" type="uint8_t"></field> -->
