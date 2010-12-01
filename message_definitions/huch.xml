@@ -84,14 +84,14 @@
 </message>
 
 <message name="HUCH_CTRL_HOVER_STATE" id="110">
-	<field name="uss"  type="double">Ultrasonic range measurement in mm</field>
-	<field name="baro" type="double">Barometric measurement in mm</field>
-	<field name="accz" type="double">Accelerometer measurement in mm/s^2</field>
-	<field name="ir1"  type="double">Infrared range measurement in mm</field>
-	<field name="ir2"  type="double">Infrared range measurement in mm</field>
-	<field name="kal_s0" type="double">Kalman state component 0 (pos)</field>
-	<field name="kal_s1" type="double">Kalman state component 1 (vel)</field>
-	<field name="kal_s2" type="double">Kalman state component 2 (acc)</field>
+	<field name="uss"  type="float">Ultrasonic range measurement in mm</field>
+	<field name="baro" type="float">Barometric measurement in mm</field>
+	<field name="accz" type="float">Accelerometer measurement in mm/s^2</field>
+	<field name="ir1"  type="float">Infrared range measurement in mm</field>
+	<field name="ir2"  type="float">Infrared range measurement in mm</field>
+	<field name="kal_s0" type="float">Kalman state component 0 (pos)</field>
+	<field name="kal_s1" type="float">Kalman state component 1 (vel)</field>
+	<field name="kal_s2" type="float">Kalman state component 2 (acc)</field>
 </message>
 
 	<!-- <message name="MK_DEBUGOUT" id="100"> -->
