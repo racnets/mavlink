@@ -1,7 +1,7 @@
 /** @file
  *	@brief MAVLink comm protocol.
  *	@see http://pixhawk.ethz.ch/software/mavlink
- *	 Generated on Friday, November 26 2010, 06:53 UTC
+ *	 Generated on Wednesday, December 8 2010, 13:42 UTC
  */
 #ifndef COMMON_H
 #define COMMON_H
@@ -14,6 +14,11 @@ extern "C" {
 #include "../protocol.h"
 
 #define MAVLINK_ENABLED_COMMON
+
+// ENUM DEFINITIONS
+
+
+// MESSAGE DEFINITIONS
 
 #include "./mavlink_msg_heartbeat.h"
 #include "./mavlink_msg_boot.h"
