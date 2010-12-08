@@ -1,7 +1,7 @@
 /** @file
  *	@brief MAVLink comm protocol.
  *	@see http://pixhawk.ethz.ch/software/mavlink
- *	 Generated on Wednesday, December 1 2010, 13:05 UTC
+ *	 Generated on Friday, November 26 2010, 06:53 UTC
  */
 #ifndef COMMON_H
 #define COMMON_H
