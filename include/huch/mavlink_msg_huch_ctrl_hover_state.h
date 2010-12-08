@@ -4,14 +4,14 @@
 
 typedef struct __mavlink_huch_ctrl_hover_state_t 
 {
-	double uss; ///< Ultrasonic range measurement in mm
-	double baro; ///< Barometric measurement in mm
-	double accz; ///< Accelerometer measurement in mm/s^2
-	double ir1; ///< Infrared range measurement in mm
-	double ir2; ///< Infrared range measurement in mm
-	double kal_s0; ///< Kalman state component 0 (pos)
-	double kal_s1; ///< Kalman state component 1 (vel)
-	double kal_s2; ///< Kalman state component 2 (acc)
+	float uss; ///< Ultrasonic range measurement in mm
+	float baro; ///< Barometric measurement in mm
+	float accz; ///< Accelerometer measurement in mm/s^2
+	float ir1; ///< Infrared range measurement in mm
+	float ir2; ///< Infrared range measurement in mm
+	float kal_s0; ///< Kalman state component 0 (pos)
+	float kal_s1; ///< Kalman state component 1 (vel)
+	float kal_s2; ///< Kalman state component 2 (acc)
 
 } mavlink_huch_ctrl_hover_state_t;
 
@@ -30,19 +30,19 @@ typedef struct __mavlink_huch_ctrl_hover_state_t
  * @param kal_s2 Kalman state component 2 (acc)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_huch_ctrl_hover_state_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, double uss, double baro, double accz, double ir1, double ir2, double kal_s0, double kal_s1, double kal_s2)
+static inline uint16_t mavlink_msg_huch_ctrl_hover_state_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, float uss, float baro, float accz, float ir1, float ir2, float kal_s0, float kal_s1, float kal_s2)
 {
 	uint16_t i = 0;
 	msg->msgid = MAVLINK_MSG_ID_HUCH_CTRL_HOVER_STATE;
 
-	i += put_double_by_index(uss, i, msg->payload); //Ultrasonic range measurement in mm
-	i += put_double_by_index(baro, i, msg->payload); //Barometric measurement in mm
-	i += put_double_by_index(accz, i, msg->payload); //Accelerometer measurement in mm/s^2
-	i += put_double_by_index(ir1, i, msg->payload); //Infrared range measurement in mm
-	i += put_double_by_index(ir2, i, msg->payload); //Infrared range measurement in mm
-	i += put_double_by_index(kal_s0, i, msg->payload); //Kalman state component 0 (pos)
-	i += put_double_by_index(kal_s1, i, msg->payload); //Kalman state component 1 (vel)
-	i += put_double_by_index(kal_s2, i, msg->payload); //Kalman state component 2 (acc)
+	i += put_float_by_index(uss, i, msg->payload); //Ultrasonic range measurement in mm
+	i += put_float_by_index(baro, i, msg->payload); //Barometric measurement in mm
+	i += put_float_by_index(accz, i, msg->payload); //Accelerometer measurement in mm/s^2
+	i += put_float_by_index(ir1, i, msg->payload); //Infrared range measurement in mm
+	i += put_float_by_index(ir2, i, msg->payload); //Infrared range measurement in mm
+	i += put_float_by_index(kal_s0, i, msg->payload); //Kalman state component 0 (pos)
+	i += put_float_by_index(kal_s1, i, msg->payload); //Kalman state component 1 (vel)
+	i += put_float_by_index(kal_s2, i, msg->payload); //Kalman state component 2 (acc)
 
 	return mavlink_finalize_message(msg, system_id, component_id, i);
 }
@@ -54,7 +54,7 @@ static inline uint16_t mavlink_msg_huch_ctrl_hover_state_encode(uint8_t system_i
 
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_huch_ctrl_hover_state_send(mavlink_channel_t chan, double uss, double baro, double accz, double ir1, double ir2, double kal_s0, double kal_s1, double kal_s2)
+static inline void mavlink_msg_huch_ctrl_hover_state_send(mavlink_channel_t chan, float uss, float baro, float accz, float ir1, float ir2, float kal_s0, float kal_s1, float kal_s2)
 {
 	mavlink_message_t msg;
 	mavlink_msg_huch_ctrl_hover_state_pack(mavlink_system.sysid, mavlink_system.compid, &msg, uss, baro, accz, ir1, ir2, kal_s0, kal_s1, kal_s2);
@@ -69,9 +69,14 @@ static inline void mavlink_msg_huch_ctrl_hover_state_send(mavlink_channel_t chan
  *
  * @return Ultrasonic range measurement in mm
  */
-static inline double mavlink_msg_huch_ctrl_hover_state_get_uss(const mavlink_message_t* msg)
+static inline float mavlink_msg_huch_ctrl_hover_state_get_uss(const mavlink_message_t* msg)
 {
-
+	generic_32bit r;
+	r.b[3] = (msg->payload)[0];
+	r.b[2] = (msg->payload)[1];
+	r.b[1] = (msg->payload)[2];
+	r.b[0] = (msg->payload)[3];
+	return (float)r.f;
 }
 
 /**
@@ -79,9 +84,14 @@ static inline double mavlink_msg_huch_ctrl_hover_state_get_uss(const mavlink_mes
  *
  * @return Barometric measurement in mm
  */
-static inline double mavlink_msg_huch_ctrl_hover_state_get_baro(const mavlink_message_t* msg)
+static inline float mavlink_msg_huch_ctrl_hover_state_get_baro(const mavlink_message_t* msg)
 {
-
+	generic_32bit r;
+	r.b[3] = (msg->payload+sizeof(float))[0];
+	r.b[2] = (msg->payload+sizeof(float))[1];
+	r.b[1] = (msg->payload+sizeof(float))[2];
+	r.b[0] = (msg->payload+sizeof(float))[3];
+	return (float)r.f;
 }
 
 /**
@@ -89,9 +99,14 @@ static inline double mavlink_msg_huch_ctrl_hover_state_get_baro(const mavlink_me
  *
  * @return Accelerometer measurement in mm/s^2
  */
-static inline double mavlink_msg_huch_ctrl_hover_state_get_accz(const mavlink_message_t* msg)
+static inline float mavlink_msg_huch_ctrl_hover_state_get_accz(const mavlink_message_t* msg)
 {
-
+	generic_32bit r;
+	r.b[3] = (msg->payload+sizeof(float)+sizeof(float))[0];
+	r.b[2] = (msg->payload+sizeof(float)+sizeof(float))[1];
+	r.b[1] = (msg->payload+sizeof(float)+sizeof(float))[2];
+	r.b[0] = (msg->payload+sizeof(float)+sizeof(float))[3];
+	return (float)r.f;
 }
 
 /**
@@ -99,9 +114,14 @@ static inline double mavlink_msg_huch_ctrl_hover_state_get_accz(const mavlink_me
  *
  * @return Infrared range measurement in mm
  */
-static inline double mavlink_msg_huch_ctrl_hover_state_get_ir1(const mavlink_message_t* msg)
+static inline float mavlink_msg_huch_ctrl_hover_state_get_ir1(const mavlink_message_t* msg)
 {
-
+	generic_32bit r;
+	r.b[3] = (msg->payload+sizeof(float)+sizeof(float)+sizeof(float))[0];
+	r.b[2] = (msg->payload+sizeof(float)+sizeof(float)+sizeof(float))[1];
+	r.b[1] = (msg->payload+sizeof(float)+sizeof(float)+sizeof(float))[2];
+	r.b[0] = (msg->payload+sizeof(float)+sizeof(float)+sizeof(float))[3];
+	return (float)r.f;
 }
 
 /**
@@ -109,9 +129,14 @@ static inline double mavlink_msg_huch_ctrl_hover_state_get_ir1(const mavlink_mes
  *
  * @return Infrared range measurement in mm
  */
-static inline double mavlink_msg_huch_ctrl_hover_state_get_ir2(const mavlink_message_t* msg)
+static inline float mavlink_msg_huch_ctrl_hover_state_get_ir2(const mavlink_message_t* msg)
 {
-
+	generic_32bit r;
+	r.b[3] = (msg->payload+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float))[0];
+	r.b[2] = (msg->payload+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float))[1];
+	r.b[1] = (msg->payload+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float))[2];
+	r.b[0] = (msg->payload+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float))[3];
+	return (float)r.f;
 }
 
 /**
@@ -119,9 +144,14 @@ static inline double mavlink_msg_huch_ctrl_hover_state_get_ir2(const mavlink_mes
  *
  * @return Kalman state component 0 (pos)
  */
-static inline double mavlink_msg_huch_ctrl_hover_state_get_kal_s0(const mavlink_message_t* msg)
+static inline float mavlink_msg_huch_ctrl_hover_state_get_kal_s0(const mavlink_message_t* msg)
 {
-
+	generic_32bit r;
+	r.b[3] = (msg->payload+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float))[0];
+	r.b[2] = (msg->payload+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float))[1];
+	r.b[1] = (msg->payload+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float))[2];
+	r.b[0] = (msg->payload+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float))[3];
+	return (float)r.f;
 }
 
 /**
@@ -129,9 +159,14 @@ static inline double mavlink_msg_huch_ctrl_hover_state_get_kal_s0(const mavlink_
  *
  * @return Kalman state component 1 (vel)
  */
-static inline double mavlink_msg_huch_ctrl_hover_state_get_kal_s1(const mavlink_message_t* msg)
+static inline float mavlink_msg_huch_ctrl_hover_state_get_kal_s1(const mavlink_message_t* msg)
 {
-
+	generic_32bit r;
+	r.b[3] = (msg->payload+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float))[0];
+	r.b[2] = (msg->payload+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float))[1];
+	r.b[1] = (msg->payload+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float))[2];
+	r.b[0] = (msg->payload+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float))[3];
+	return (float)r.f;
 }
 
 /**
@@ -139,9 +174,14 @@ static inline double mavlink_msg_huch_ctrl_hover_state_get_kal_s1(const mavlink_
  *
  * @return Kalman state component 2 (acc)
  */
-static inline double mavlink_msg_huch_ctrl_hover_state_get_kal_s2(const mavlink_message_t* msg)
+static inline float mavlink_msg_huch_ctrl_hover_state_get_kal_s2(const mavlink_message_t* msg)
 {
-
+	generic_32bit r;
+	r.b[3] = (msg->payload+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float))[0];
+	r.b[2] = (msg->payload+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float))[1];
+	r.b[1] = (msg->payload+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float))[2];
+	r.b[0] = (msg->payload+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float)+sizeof(float))[3];
+	return (float)r.f;
 }
 
 static inline void mavlink_msg_huch_ctrl_hover_state_decode(const mavlink_message_t* msg, mavlink_huch_ctrl_hover_state_t* huch_ctrl_hover_state)
