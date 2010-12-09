@@ -94,8 +94,8 @@
 	<field name="kal_s2" type="float">Kalman state component 2 (acc)</field>
 </message>
 
-<message name="HUCH_IMU_RAW_UNCALIBRATED_ADC_VALUES" id="111">
-	<description>The RAW IMU ADC values, not calibrated, not scaled!</description>
+<message name="HUCH_IMU_RAW_ADC" id="111">
+	<description>The RAW IMU ADC values, not calibrated, not scaled, not filtered!</description>
 	<field name="xacc"  type="uint16_t">X acceleration (adc units)</field>
 	<field name="yacc"  type="uint16_t">Y acceleration (adc units)</field>
 	<field name="zacc"  type="uint16_t">Z acceleration (adc units)</field>
