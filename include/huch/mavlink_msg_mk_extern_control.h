@@ -50,6 +50,24 @@ static inline uint16_t mavlink_msg_mk_extern_control_pack(uint8_t system_id, uin
 	return mavlink_finalize_message(msg, system_id, component_id, i);
 }
 
+static inline uint16_t mavlink_msg_mk_extern_control_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, uint8_t remote_buttons, int8_t nick, int8_t roll, int8_t yaw, uint16_t gas, uint16_t height, uint8_t AP_flags, uint8_t frame, uint8_t config)
+{
+	uint16_t i = 0;
+	msg->msgid = MAVLINK_MSG_ID_MK_EXTERN_CONTROL;
+
+	i += put_uint8_t_by_index(remote_buttons, i, msg->payload); //
+	i += put_int8_t_by_index(nick, i, msg->payload); //
+	i += put_int8_t_by_index(roll, i, msg->payload); //
+	i += put_int8_t_by_index(yaw, i, msg->payload); //
+	i += put_uint16_t_by_index(gas, i, msg->payload); //
+	i += put_uint16_t_by_index(height, i, msg->payload); //
+	i += put_uint8_t_by_index(AP_flags, i, msg->payload); //
+	i += put_uint8_t_by_index(frame, i, msg->payload); //
+	i += put_uint8_t_by_index(config, i, msg->payload); //
+
+	return mavlink_finalize_message_chan(msg, system_id, component_id, chan, i);
+}
+
 static inline uint16_t mavlink_msg_mk_extern_control_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_mk_extern_control_t* mk_extern_control)
 {
 	return mavlink_msg_mk_extern_control_pack(system_id, component_id, msg, mk_extern_control->remote_buttons, mk_extern_control->nick, mk_extern_control->roll, mk_extern_control->yaw, mk_extern_control->gas, mk_extern_control->height, mk_extern_control->AP_flags, mk_extern_control->frame, mk_extern_control->config);
@@ -60,7 +78,7 @@ static inline uint16_t mavlink_msg_mk_extern_control_encode(uint8_t system_id, u
 static inline void mavlink_msg_mk_extern_control_send(mavlink_channel_t chan, uint8_t remote_buttons, int8_t nick, int8_t roll, int8_t yaw, uint16_t gas, uint16_t height, uint8_t AP_flags, uint8_t frame, uint8_t config)
 {
 	mavlink_message_t msg;
-	mavlink_msg_mk_extern_control_pack(mavlink_system.sysid, mavlink_system.compid, &msg, remote_buttons, nick, roll, yaw, gas, height, AP_flags, frame, config);
+	mavlink_msg_mk_extern_control_pack_chan(mavlink_system.sysid, mavlink_system.compid, chan, &msg, remote_buttons, nick, roll, yaw, gas, height, AP_flags, frame, config);
 	mavlink_send_uart(chan, &msg);
 }
 

@@ -104,6 +104,16 @@
 	<field name="zgyro" type="uint16_t">Angular speed around Z axis (adc units)</field>
 </message>
 
+<message name="HUCH_MK_IMU" id="112">
+	<description>The MikoKopter IMU values, (calibrated), scaled and filtered!</description>
+	<field name="xacc"  type="int16_t">Calibrated X acceleration (mg)</field>
+	<field name="yacc"  type="int16_t">Calibrated Y acceleration (mg)</field>
+	<field name="zacc"  type="int16_t">Calibrated Z acceleration (mg)</field>
+	<field name="xgyro" type="int16_t">Uncalibrated angular speed around X axis (0.1 deg/sec)</field>
+	<field name="ygyro" type="int16_t">Uncalibrated angular speed around Y axis (0.1 deg/sec)</field>
+	<field name="zgyro" type="int16_t">Uncalibrated angular speed around Z axis (0.1 deg/sec)</field>
+</message>
+
 	<!-- <message name="MK_DEBUGOUT" id="100"> -->
 	<!-- 	HUCH Mikrokopter DebugOut -->
 	<!-- 	<field name="d1" type="uint8_t"></field> -->

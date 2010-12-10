@@ -35,6 +35,19 @@ static inline uint16_t mavlink_msg_huch_hmc5843_pack(uint8_t system_id, uint8_t 
 	return mavlink_finalize_message(msg, system_id, component_id, i);
 }
 
+static inline uint16_t mavlink_msg_huch_hmc5843_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, float data_x, float data_y, float data_z, uint32_t timestamp)
+{
+	uint16_t i = 0;
+	msg->msgid = MAVLINK_MSG_ID_HUCH_HMC5843;
+
+	i += put_float_by_index(data_x, i, msg->payload); //magnetic field x-direction in Gs
+	i += put_float_by_index(data_y, i, msg->payload); //magnetic field y-direction in Gs
+	i += put_float_by_index(data_z, i, msg->payload); //magnetic field z-direction in Gs
+	i += put_uint32_t_by_index(timestamp, i, msg->payload); //time in us
+
+	return mavlink_finalize_message_chan(msg, system_id, component_id, chan, i);
+}
+
 static inline uint16_t mavlink_msg_huch_hmc5843_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_huch_hmc5843_t* huch_hmc5843)
 {
 	return mavlink_msg_huch_hmc5843_pack(system_id, component_id, msg, huch_hmc5843->data_x, huch_hmc5843->data_y, huch_hmc5843->data_z, huch_hmc5843->timestamp);
@@ -45,7 +58,7 @@ static inline uint16_t mavlink_msg_huch_hmc5843_encode(uint8_t system_id, uint8_
 static inline void mavlink_msg_huch_hmc5843_send(mavlink_channel_t chan, float data_x, float data_y, float data_z, uint32_t timestamp)
 {
 	mavlink_message_t msg;
-	mavlink_msg_huch_hmc5843_pack(mavlink_system.sysid, mavlink_system.compid, &msg, data_x, data_y, data_z, timestamp);
+	mavlink_msg_huch_hmc5843_pack_chan(mavlink_system.sysid, mavlink_system.compid, chan, &msg, data_x, data_y, data_z, timestamp);
 	mavlink_send_uart(chan, &msg);
 }
 

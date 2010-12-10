@@ -71,6 +71,31 @@ static inline uint16_t mavlink_msg_huch_attitude_pack(uint8_t system_id, uint8_t
 	return mavlink_finalize_message(msg, system_id, component_id, i);
 }
 
+static inline uint16_t mavlink_msg_huch_attitude_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, int16_t xacc, int16_t yacc, int16_t zacc, int16_t zaccraw, int16_t xaccmean, int16_t yaccmean, int16_t zaccmean, int16_t xgyro, int16_t ygyro, int16_t zgyro, int32_t xgyroint, int32_t ygyroint, int32_t zgyroint, int16_t xmag, int16_t ymag, int16_t zmag)
+{
+	uint16_t i = 0;
+	msg->msgid = MAVLINK_MSG_ID_HUCH_ATTITUDE;
+
+	i += put_int16_t_by_index(xacc, i, msg->payload); //
+	i += put_int16_t_by_index(yacc, i, msg->payload); //
+	i += put_int16_t_by_index(zacc, i, msg->payload); //
+	i += put_int16_t_by_index(zaccraw, i, msg->payload); //
+	i += put_int16_t_by_index(xaccmean, i, msg->payload); //
+	i += put_int16_t_by_index(yaccmean, i, msg->payload); //
+	i += put_int16_t_by_index(zaccmean, i, msg->payload); //
+	i += put_int16_t_by_index(xgyro, i, msg->payload); //
+	i += put_int16_t_by_index(ygyro, i, msg->payload); //
+	i += put_int16_t_by_index(zgyro, i, msg->payload); //
+	i += put_int32_t_by_index(xgyroint, i, msg->payload); //
+	i += put_int32_t_by_index(ygyroint, i, msg->payload); //
+	i += put_int32_t_by_index(zgyroint, i, msg->payload); //
+	i += put_int16_t_by_index(xmag, i, msg->payload); //
+	i += put_int16_t_by_index(ymag, i, msg->payload); //
+	i += put_int16_t_by_index(zmag, i, msg->payload); //
+
+	return mavlink_finalize_message_chan(msg, system_id, component_id, chan, i);
+}
+
 static inline uint16_t mavlink_msg_huch_attitude_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_huch_attitude_t* huch_attitude)
 {
 	return mavlink_msg_huch_attitude_pack(system_id, component_id, msg, huch_attitude->xacc, huch_attitude->yacc, huch_attitude->zacc, huch_attitude->zaccraw, huch_attitude->xaccmean, huch_attitude->yaccmean, huch_attitude->zaccmean, huch_attitude->xgyro, huch_attitude->ygyro, huch_attitude->zgyro, huch_attitude->xgyroint, huch_attitude->ygyroint, huch_attitude->zgyroint, huch_attitude->xmag, huch_attitude->ymag, huch_attitude->zmag);
@@ -81,7 +106,7 @@ static inline uint16_t mavlink_msg_huch_attitude_encode(uint8_t system_id, uint8
 static inline void mavlink_msg_huch_attitude_send(mavlink_channel_t chan, int16_t xacc, int16_t yacc, int16_t zacc, int16_t zaccraw, int16_t xaccmean, int16_t yaccmean, int16_t zaccmean, int16_t xgyro, int16_t ygyro, int16_t zgyro, int32_t xgyroint, int32_t ygyroint, int32_t zgyroint, int16_t xmag, int16_t ymag, int16_t zmag)
 {
 	mavlink_message_t msg;
-	mavlink_msg_huch_attitude_pack(mavlink_system.sysid, mavlink_system.compid, &msg, xacc, yacc, zacc, zaccraw, xaccmean, yaccmean, zaccmean, xgyro, ygyro, zgyro, xgyroint, ygyroint, zgyroint, xmag, ymag, zmag);
+	mavlink_msg_huch_attitude_pack_chan(mavlink_system.sysid, mavlink_system.compid, chan, &msg, xacc, yacc, zacc, zaccraw, xaccmean, yaccmean, zaccmean, xgyro, ygyro, zgyro, xgyroint, ygyroint, zgyroint, xmag, ymag, zmag);
 	mavlink_send_uart(chan, &msg);
 }
 

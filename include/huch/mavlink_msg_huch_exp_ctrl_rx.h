@@ -38,6 +38,20 @@ static inline uint16_t mavlink_msg_huch_exp_ctrl_rx_pack(uint8_t system_id, uint
 	return mavlink_finalize_message(msg, system_id, component_id, i);
 }
 
+static inline uint16_t mavlink_msg_huch_exp_ctrl_rx_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, uint8_t version, uint16_t value0, uint16_t value1, uint16_t value2, uint16_t value3)
+{
+	uint16_t i = 0;
+	msg->msgid = MAVLINK_MSG_ID_HUCH_EXP_CTRL_RX;
+
+	i += put_uint8_t_by_index(version, i, msg->payload); //
+	i += put_uint16_t_by_index(value0, i, msg->payload); //
+	i += put_uint16_t_by_index(value1, i, msg->payload); //
+	i += put_uint16_t_by_index(value2, i, msg->payload); //
+	i += put_uint16_t_by_index(value3, i, msg->payload); //
+
+	return mavlink_finalize_message_chan(msg, system_id, component_id, chan, i);
+}
+
 static inline uint16_t mavlink_msg_huch_exp_ctrl_rx_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_huch_exp_ctrl_rx_t* huch_exp_ctrl_rx)
 {
 	return mavlink_msg_huch_exp_ctrl_rx_pack(system_id, component_id, msg, huch_exp_ctrl_rx->version, huch_exp_ctrl_rx->value0, huch_exp_ctrl_rx->value1, huch_exp_ctrl_rx->value2, huch_exp_ctrl_rx->value3);
@@ -48,7 +62,7 @@ static inline uint16_t mavlink_msg_huch_exp_ctrl_rx_encode(uint8_t system_id, ui
 static inline void mavlink_msg_huch_exp_ctrl_rx_send(mavlink_channel_t chan, uint8_t version, uint16_t value0, uint16_t value1, uint16_t value2, uint16_t value3)
 {
 	mavlink_message_t msg;
-	mavlink_msg_huch_exp_ctrl_rx_pack(mavlink_system.sysid, mavlink_system.compid, &msg, version, value0, value1, value2, value3);
+	mavlink_msg_huch_exp_ctrl_rx_pack_chan(mavlink_system.sysid, mavlink_system.compid, chan, &msg, version, value0, value1, value2, value3);
 	mavlink_send_uart(chan, &msg);
 }
 

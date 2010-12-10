@@ -35,6 +35,19 @@ static inline uint16_t mavlink_msg_huch_bmp085_pack(uint8_t system_id, uint8_t c
 	return mavlink_finalize_message(msg, system_id, component_id, i);
 }
 
+static inline uint16_t mavlink_msg_huch_bmp085_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, int32_t pressure, int16_t temperature, uint32_t timestamp, float height)
+{
+	uint16_t i = 0;
+	msg->msgid = MAVLINK_MSG_ID_HUCH_BMP085;
+
+	i += put_int32_t_by_index(pressure, i, msg->payload); //pressure in Pa
+	i += put_int16_t_by_index(temperature, i, msg->payload); //temperature in 0.1C
+	i += put_uint32_t_by_index(timestamp, i, msg->payload); //time in us
+	i += put_float_by_index(height, i, msg->payload); //height in meter
+
+	return mavlink_finalize_message_chan(msg, system_id, component_id, chan, i);
+}
+
 static inline uint16_t mavlink_msg_huch_bmp085_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_huch_bmp085_t* huch_bmp085)
 {
 	return mavlink_msg_huch_bmp085_pack(system_id, component_id, msg, huch_bmp085->pressure, huch_bmp085->temperature, huch_bmp085->timestamp, huch_bmp085->height);
@@ -45,7 +58,7 @@ static inline uint16_t mavlink_msg_huch_bmp085_encode(uint8_t system_id, uint8_t
 static inline void mavlink_msg_huch_bmp085_send(mavlink_channel_t chan, int32_t pressure, int16_t temperature, uint32_t timestamp, float height)
 {
 	mavlink_message_t msg;
-	mavlink_msg_huch_bmp085_pack(mavlink_system.sysid, mavlink_system.compid, &msg, pressure, temperature, timestamp, height);
+	mavlink_msg_huch_bmp085_pack_chan(mavlink_system.sysid, mavlink_system.compid, chan, &msg, pressure, temperature, timestamp, height);
 	mavlink_send_uart(chan, &msg);
 }
 
