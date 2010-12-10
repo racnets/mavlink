@@ -1,6 +1,6 @@
 // MESSAGE HUCH_DISTANCE PACKING
 
-#define MAVLINK_MSG_ID_HUCH_DISTANCE 113
+#define MAVLINK_MSG_ID_HUCH_DISTANCE 117
 
 typedef struct __mavlink_huch_distance_t 
 {

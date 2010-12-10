@@ -39,6 +39,7 @@ enum MAV_ACTION {
 			MAV_ACTION_NAVIGATE = 25,
 			MAV_ACTION_LAND = 26,
 			MAV_ACTION_LOITER = 27,
+			MAV_ACTION_SET_ORIGIN = 28,
 			MAV_ACTION_NB        ///< Number of MAV actions
 };
 
@@ -48,11 +49,11 @@ enum MAV_MODE
 			MAV_MODE_LOCKED = 1, ///< Motors are blocked, system is safe
 			MAV_MODE_MANUAL = 2, ///< System is allowed to be active, under manual (RC) control
 			MAV_MODE_GUIDED = 3, ///< System is allowed to be active, under autonomous control, manual setpoint
-			MAV_MODE_AUTO = 4,   ///< System is allowed to be active, under autonomous control and navigation
-			MAV_MODE_TEST1 = 5,  ///< Generic test mode, for custom use
-			MAV_MODE_TEST2 = 6,  ///< Generic test mode, for custom use
-			MAV_MODE_TEST3 = 7,   ///< Generic test mode, for custom use
-			MAV_MODE_READY = 8,  ///< System is ready, motors are unblocked, but controllers are inactive
+			MAV_MODE_AUTO =   4, ///< System is allowed to be active, under autonomous control and navigation
+			MAV_MODE_TEST1 =  5, ///< Generic test mode, for custom use
+			MAV_MODE_TEST2 =  6, ///< Generic test mode, for custom use
+			MAV_MODE_TEST3 =  7, ///< Generic test mode, for custom use
+			MAV_MODE_READY =  8, ///< System is ready, motors are unblocked, but controllers are inactive
 			MAV_MODE_RC_TRAINING = 9 ///< System is blocked, only RC valued are read and reported back
 };
 
@@ -96,7 +97,8 @@ enum MAV_AUTOPILOT_TYPE
     MAV_AUTOPILOT_GENERIC = 0,
     MAV_AUTOPILOT_PIXHAWK = 1,
     MAV_AUTOPILOT_SLUGS = 2,
-    MAV_AUTOPILOT_ARDUPILOTMEGA = 3
+    MAV_AUTOPILOT_ARDUPILOTMEGA = 3,
+    MAV_AUTOPILOT_HUCH = 4
 };
 
 enum MAV_COMPONENT {
@@ -113,6 +115,21 @@ enum MAV_FRAME
     MAV_FRAME_GLOBAL = 0,
     MAV_FRAME_LOCAL = 1
 };
+
+enum MAV_DATA_STREAM{
+    MAV_DATA_STREAM_ALL = 0,
+    MAV_DATA_STREAM_RAW_SENSORS = 1,
+    MAV_DATA_STREAM_EXTENDED_STATUS = 2,
+    MAV_DATA_STREAM_RC_CHANNELS = 3,
+    MAV_DATA_STREAM_RAW_CONTROLLER = 4,
+    MAV_DATA_STREAM_RAW_SENSOR_FUSION = 5,
+    MAV_DATA_STREAM_POSITION = 6,
+    MAV_DATA_STREAM_EXTRA1 = 7,
+    MAV_DATA_STREAM_EXTRA2 = 8,
+    MAV_DATA_STREAM_EXTRA3 = 9
+};
+
+
 
 #define MAVLINK_STX 0x55 ///< Packet start sign
 #define MAVLINK_STX_LEN 1 ///< Length of start sign
@@ -174,7 +191,8 @@ typedef struct __mavlink_status {
 	uint8_t parse_error;                ///< Number of parse errors
 	mavlink_parse_state_t parse_state;  ///< Parsing state machine
 	uint8_t packet_idx;                 ///< Index in current packet
-	uint8_t current_seq;                ///< Sequence number of last packet
+	uint8_t current_rx_seq;             ///< Sequence number of last packet received
+	uint8_t current_tx_seq;             ///< Sequence number of last packet sent
 	uint16_t packet_rx_success_count;   ///< Received packets
 	uint16_t packet_rx_drop_count;      ///< Number of packet drops
 } mavlink_status_t;

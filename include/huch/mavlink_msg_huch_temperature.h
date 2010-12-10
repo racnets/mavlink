@@ -1,6 +1,6 @@
 // MESSAGE HUCH_TEMPERATURE PACKING
 
-#define MAVLINK_MSG_ID_HUCH_TEMPERATURE 111
+#define MAVLINK_MSG_ID_HUCH_TEMPERATURE 115
 
 typedef struct __mavlink_huch_temperature_t 
 {

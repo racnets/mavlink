@@ -1,6 +1,6 @@
 // MESSAGE HUCH_ALTITUDE PACKING
 
-#define MAVLINK_MSG_ID_HUCH_ALTITUDE 110
+#define MAVLINK_MSG_ID_HUCH_ALTITUDE 114
 
 typedef struct __mavlink_huch_altitude_t 
 {

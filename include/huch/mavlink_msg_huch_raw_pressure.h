@@ -1,6 +1,6 @@
 // MESSAGE HUCH_RAW_PRESSURE PACKING
 
-#define MAVLINK_MSG_ID_HUCH_RAW_PRESSURE 109
+#define MAVLINK_MSG_ID_HUCH_RAW_PRESSURE 113
 
 typedef struct __mavlink_huch_raw_pressure_t 
 {

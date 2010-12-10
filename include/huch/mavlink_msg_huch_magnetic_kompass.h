@@ -1,6 +1,6 @@
 // MESSAGE HUCH_MAGNETIC_KOMPASS PACKING
 
-#define MAVLINK_MSG_ID_HUCH_MAGNETIC_KOMPASS 112
+#define MAVLINK_MSG_ID_HUCH_MAGNETIC_KOMPASS 116
 
 typedef struct __mavlink_huch_magnetic_kompass_t 
 {
