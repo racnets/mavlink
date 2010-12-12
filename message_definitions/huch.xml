@@ -106,6 +106,7 @@
 
 <message name="HUCH_MK_IMU" id="112">
 	<description>The MikoKopter IMU values, (calibrated), scaled and filtered!</description>
+	<field name="usec"  type="uint64_t">Timestamp (microseconds since UNIX epoch)</field>
 	<field name="xacc"  type="int16_t">Calibrated X acceleration (mg)</field>
 	<field name="yacc"  type="int16_t">Calibrated Y acceleration (mg)</field>
 	<field name="zacc"  type="int16_t">Calibrated Z acceleration (mg)</field>
