@@ -41,21 +41,6 @@ static inline uint16_t mavlink_msg_huch_imu_raw_adc_pack(uint8_t system_id, uint
 	return mavlink_finalize_message(msg, system_id, component_id, i);
 }
 
-static inline uint16_t mavlink_msg_huch_imu_raw_adc_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, uint16_t xacc, uint16_t yacc, uint16_t zacc, uint16_t xgyro, uint16_t ygyro, uint16_t zgyro)
-{
-	uint16_t i = 0;
-	msg->msgid = MAVLINK_MSG_ID_HUCH_IMU_RAW_ADC;
-
-	i += put_uint16_t_by_index(xacc, i, msg->payload); //X acceleration (adc units)
-	i += put_uint16_t_by_index(yacc, i, msg->payload); //Y acceleration (adc units)
-	i += put_uint16_t_by_index(zacc, i, msg->payload); //Z acceleration (adc units)
-	i += put_uint16_t_by_index(xgyro, i, msg->payload); //Angular speed around X axis (adc units)
-	i += put_uint16_t_by_index(ygyro, i, msg->payload); //Angular speed around Y axis (adc units)
-	i += put_uint16_t_by_index(zgyro, i, msg->payload); //Angular speed around Z axis (adc units)
-
-	return mavlink_finalize_message_chan(msg, system_id, component_id, chan, i);
-}
-
 static inline uint16_t mavlink_msg_huch_imu_raw_adc_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_huch_imu_raw_adc_t* huch_imu_raw_adc)
 {
 	return mavlink_msg_huch_imu_raw_adc_pack(system_id, component_id, msg, huch_imu_raw_adc->xacc, huch_imu_raw_adc->yacc, huch_imu_raw_adc->zacc, huch_imu_raw_adc->xgyro, huch_imu_raw_adc->ygyro, huch_imu_raw_adc->zgyro);
@@ -66,7 +51,7 @@ static inline uint16_t mavlink_msg_huch_imu_raw_adc_encode(uint8_t system_id, ui
 static inline void mavlink_msg_huch_imu_raw_adc_send(mavlink_channel_t chan, uint16_t xacc, uint16_t yacc, uint16_t zacc, uint16_t xgyro, uint16_t ygyro, uint16_t zgyro)
 {
 	mavlink_message_t msg;
-	mavlink_msg_huch_imu_raw_adc_pack_chan(mavlink_system.sysid, mavlink_system.compid, chan, &msg, xacc, yacc, zacc, xgyro, ygyro, zgyro);
+	mavlink_msg_huch_imu_raw_adc_pack(mavlink_system.sysid, mavlink_system.compid, &msg, xacc, yacc, zacc, xgyro, ygyro, zgyro);
 	mavlink_send_uart(chan, &msg);
 }
 

@@ -44,7 +44,7 @@
 	 <field name="zmag" type="int16_t"></field>
   </message>
 
-  <message name="HUCH_ALTITUDE" id="104">
+  <message name="HUCH_FC_ALTITUDE" id="104">
 	 <field name="baro" type="int16_t"></field>
 	 <field name="baroref" type="int16_t"></field>
   </message>
@@ -55,13 +55,6 @@
 	 <field name="ranger3" type="uint16_t"></field>
   </message>
 
-<message name="HUCH_BMP085" id="106">
-	<field name="pressure" type="int32_t">pressure in Pa</field>
-	<field name="temperature" type="int16_t">temperature in 0.1C</field>
-	<field name="timestamp" type="uint32_t">time in us</field>
-	<field name="height" type="float">height in meter</field> 
-</message>
-
   <message name="HUCH_EXP_CTRL_RX" id="107">
 	 <field name="version" type="uint8_t"></field>
 	 <field name="value0" type="uint16_t"></field>
@@ -69,13 +62,6 @@
 	 <field name="value2" type="uint16_t"></field>
 	 <field name="value3" type="uint16_t"></field>
   </message>
-
-<message name="HUCH_HMC5843" id="108">
-	<field name="data_x" type="float">magnetic field x-direction in Gs</field>
-	<field name="data_y" type="float">magnetic field y-direction in Gs</field>
-	<field name="data_z" type="float">magnetic field z-direction in Gs</field>
-	<field name="timestamp" type="uint32_t">time in us</field>
-</message>
 
 <message name="MK_FC_STATUS" id="109">
 	<field name="rssi" type="int16_t">RC Control RSSI on FlightCtrl</field>
@@ -113,6 +99,38 @@
 	<field name="xgyro" type="int16_t">Uncalibrated angular speed around X axis (0.1 deg/sec)</field>
 	<field name="ygyro" type="int16_t">Uncalibrated angular speed around Y axis (0.1 deg/sec)</field>
 	<field name="zgyro" type="int16_t">Uncalibrated angular speed around Z axis (0.1 deg/sec)</field>
+</message>
+
+<message name="HUCH_RAW_PRESSURE" id="113">
+	<description>The RAW pressure readings for a pressure sensor in pascal</description>
+	<field name="usec"  type="uint64_t">timestamp in microseconds</field>
+	<field name="pressure"  type="int32_t">pressure in pascal</field>
+</message>
+
+<message name="HUCH_ALTITUDE" id="114">
+	<description>The readings for an altitude sensor in meters</description>
+	<field name="usec"  type="uint64_t">timestamp in microseconds</field>
+	<field name="altitude"  type="float">absolute altitude in meter</field>
+</message>
+
+<message name="HUCH_TEMPERATURE" id="115">
+	<description>The readings for an temperature sensor in meters</description>
+	<field name="usec"  type="uint64_t">timestamp in microseconds</field>
+	<field name="temperature"  type="int32_t">temperature in 0.1C</field>
+</message>
+
+<message name="HUCH_MAGNETIC_KOMPASS" id="116">
+	<description>The readings for a 3D magnetic field sensor in Gauss</description>
+	<field name="usec"  type="uint64_t">timestamp in microseconds</field>
+	<field name="data_x" type="float">magnetic field x-direction in Gs</field>
+	<field name="data_y" type="float">magnetic field y-direction in Gs</field>
+	<field name="data_z" type="float">magnetic field z-direction in Gs</field>
+</message>
+
+<message name="HUCH_DISTANCE" id="117">
+	<description>The readings for an distance sensor in meters</description>
+	<field name="usec" type="uint64_t">timestamp in microseconds</field>
+	<field name="distance" type="float">relativ distance in meter</field>
 </message>
 
 	<!-- <message name="MK_DEBUGOUT" id="100"> -->

@@ -47,23 +47,6 @@ static inline uint16_t mavlink_msg_huch_ctrl_hover_state_pack(uint8_t system_id,
 	return mavlink_finalize_message(msg, system_id, component_id, i);
 }
 
-static inline uint16_t mavlink_msg_huch_ctrl_hover_state_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, float uss, float baro, float accz, float ir1, float ir2, float kal_s0, float kal_s1, float kal_s2)
-{
-	uint16_t i = 0;
-	msg->msgid = MAVLINK_MSG_ID_HUCH_CTRL_HOVER_STATE;
-
-	i += put_float_by_index(uss, i, msg->payload); //Ultrasonic range measurement in mm
-	i += put_float_by_index(baro, i, msg->payload); //Barometric measurement in mm
-	i += put_float_by_index(accz, i, msg->payload); //Accelerometer measurement in mm/s^2
-	i += put_float_by_index(ir1, i, msg->payload); //Infrared range measurement in mm
-	i += put_float_by_index(ir2, i, msg->payload); //Infrared range measurement in mm
-	i += put_float_by_index(kal_s0, i, msg->payload); //Kalman state component 0 (pos)
-	i += put_float_by_index(kal_s1, i, msg->payload); //Kalman state component 1 (vel)
-	i += put_float_by_index(kal_s2, i, msg->payload); //Kalman state component 2 (acc)
-
-	return mavlink_finalize_message_chan(msg, system_id, component_id, chan, i);
-}
-
 static inline uint16_t mavlink_msg_huch_ctrl_hover_state_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_huch_ctrl_hover_state_t* huch_ctrl_hover_state)
 {
 	return mavlink_msg_huch_ctrl_hover_state_pack(system_id, component_id, msg, huch_ctrl_hover_state->uss, huch_ctrl_hover_state->baro, huch_ctrl_hover_state->accz, huch_ctrl_hover_state->ir1, huch_ctrl_hover_state->ir2, huch_ctrl_hover_state->kal_s0, huch_ctrl_hover_state->kal_s1, huch_ctrl_hover_state->kal_s2);
@@ -74,7 +57,7 @@ static inline uint16_t mavlink_msg_huch_ctrl_hover_state_encode(uint8_t system_i
 static inline void mavlink_msg_huch_ctrl_hover_state_send(mavlink_channel_t chan, float uss, float baro, float accz, float ir1, float ir2, float kal_s0, float kal_s1, float kal_s2)
 {
 	mavlink_message_t msg;
-	mavlink_msg_huch_ctrl_hover_state_pack_chan(mavlink_system.sysid, mavlink_system.compid, chan, &msg, uss, baro, accz, ir1, ir2, kal_s0, kal_s1, kal_s2);
+	mavlink_msg_huch_ctrl_hover_state_pack(mavlink_system.sysid, mavlink_system.compid, &msg, uss, baro, accz, ir1, ir2, kal_s0, kal_s1, kal_s2);
 	mavlink_send_uart(chan, &msg);
 }
 
