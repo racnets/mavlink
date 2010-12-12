@@ -41,6 +41,21 @@ static inline uint16_t mavlink_msg_gps_local_origin_set_pack(uint8_t system_id, 
 	return mavlink_finalize_message(msg, system_id, component_id, i);
 }
 
+static inline uint16_t mavlink_msg_gps_local_origin_set_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, float latitude, float longitude, float altitude, float x, float y, float z)
+{
+	uint16_t i = 0;
+	msg->msgid = MAVLINK_MSG_ID_GPS_LOCAL_ORIGIN_SET;
+
+	i += put_float_by_index(latitude, i, msg->payload); //Latitude (WGS84)
+	i += put_float_by_index(longitude, i, msg->payload); //Longitude (WGS84)
+	i += put_float_by_index(altitude, i, msg->payload); //Altitude(WGS84)
+	i += put_float_by_index(x, i, msg->payload); //Local X coordinate in meters
+	i += put_float_by_index(y, i, msg->payload); //Local Y coordinate in meters
+	i += put_float_by_index(z, i, msg->payload); //Local Z coordinate in meters
+
+	return mavlink_finalize_message_chan(msg, system_id, component_id, chan, i);
+}
+
 static inline uint16_t mavlink_msg_gps_local_origin_set_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_gps_local_origin_set_t* gps_local_origin_set)
 {
 	return mavlink_msg_gps_local_origin_set_pack(system_id, component_id, msg, gps_local_origin_set->latitude, gps_local_origin_set->longitude, gps_local_origin_set->altitude, gps_local_origin_set->x, gps_local_origin_set->y, gps_local_origin_set->z);
@@ -51,7 +66,7 @@ static inline uint16_t mavlink_msg_gps_local_origin_set_encode(uint8_t system_id
 static inline void mavlink_msg_gps_local_origin_set_send(mavlink_channel_t chan, float latitude, float longitude, float altitude, float x, float y, float z)
 {
 	mavlink_message_t msg;
-	mavlink_msg_gps_local_origin_set_pack(mavlink_system.sysid, mavlink_system.compid, &msg, latitude, longitude, altitude, x, y, z);
+	mavlink_msg_gps_local_origin_set_pack_chan(mavlink_system.sysid, mavlink_system.compid, chan, &msg, latitude, longitude, altitude, x, y, z);
 	mavlink_send_uart(chan, &msg);
 }
 

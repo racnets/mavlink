@@ -29,6 +29,17 @@ static inline uint16_t mavlink_msg_huch_distance_pack(uint8_t system_id, uint8_t
 	return mavlink_finalize_message(msg, system_id, component_id, i);
 }
 
+static inline uint16_t mavlink_msg_huch_distance_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, uint64_t usec, float distance)
+{
+	uint16_t i = 0;
+	msg->msgid = MAVLINK_MSG_ID_HUCH_DISTANCE;
+
+	i += put_uint64_t_by_index(usec, i, msg->payload); //timestamp in microseconds
+	i += put_float_by_index(distance, i, msg->payload); //relativ distance in meter
+
+	return mavlink_finalize_message_chan(msg, system_id, component_id, chan, i);
+}
+
 static inline uint16_t mavlink_msg_huch_distance_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_huch_distance_t* huch_distance)
 {
 	return mavlink_msg_huch_distance_pack(system_id, component_id, msg, huch_distance->usec, huch_distance->distance);
@@ -39,7 +50,7 @@ static inline uint16_t mavlink_msg_huch_distance_encode(uint8_t system_id, uint8
 static inline void mavlink_msg_huch_distance_send(mavlink_channel_t chan, uint64_t usec, float distance)
 {
 	mavlink_message_t msg;
-	mavlink_msg_huch_distance_pack(mavlink_system.sysid, mavlink_system.compid, &msg, usec, distance);
+	mavlink_msg_huch_distance_pack_chan(mavlink_system.sysid, mavlink_system.compid, chan, &msg, usec, distance);
 	mavlink_send_uart(chan, &msg);
 }
 

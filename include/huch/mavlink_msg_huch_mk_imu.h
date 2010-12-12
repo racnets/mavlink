@@ -71,7 +71,6 @@ static inline void mavlink_msg_huch_mk_imu_send(mavlink_channel_t chan, uint64_t
 {
 	mavlink_message_t msg;
 	mavlink_msg_huch_mk_imu_pack_chan(mavlink_system.sysid, mavlink_system.compid, chan, &msg, usec, xacc, yacc, zacc, xgyro, ygyro, zgyro);
-	mavlink_msg_huch_mk_imu_pack(mavlink_system.sysid, mavlink_system.compid, &msg, xacc, yacc, zacc, xgyro, ygyro, zgyro);
 	mavlink_send_uart(chan, &msg);
 }
 

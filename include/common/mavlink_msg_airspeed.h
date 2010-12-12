@@ -26,6 +26,16 @@ static inline uint16_t mavlink_msg_airspeed_pack(uint8_t system_id, uint8_t comp
 	return mavlink_finalize_message(msg, system_id, component_id, i);
 }
 
+static inline uint16_t mavlink_msg_airspeed_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, float airspeed)
+{
+	uint16_t i = 0;
+	msg->msgid = MAVLINK_MSG_ID_AIRSPEED;
+
+	i += put_float_by_index(airspeed, i, msg->payload); //meters/second
+
+	return mavlink_finalize_message_chan(msg, system_id, component_id, chan, i);
+}
+
 static inline uint16_t mavlink_msg_airspeed_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_airspeed_t* airspeed)
 {
 	return mavlink_msg_airspeed_pack(system_id, component_id, msg, airspeed->airspeed);
@@ -36,7 +46,7 @@ static inline uint16_t mavlink_msg_airspeed_encode(uint8_t system_id, uint8_t co
 static inline void mavlink_msg_airspeed_send(mavlink_channel_t chan, float airspeed)
 {
 	mavlink_message_t msg;
-	mavlink_msg_airspeed_pack(mavlink_system.sysid, mavlink_system.compid, &msg, airspeed);
+	mavlink_msg_airspeed_pack_chan(mavlink_system.sysid, mavlink_system.compid, chan, &msg, airspeed);
 	mavlink_send_uart(chan, &msg);
 }
 
