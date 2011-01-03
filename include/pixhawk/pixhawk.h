@@ -1,7 +1,7 @@
 /** @file
  *	@brief MAVLink comm protocol.
  *	@see http://pixhawk.ethz.ch/software/mavlink
- *	 Generated on Tuesday, December 7 2010, 13:34 UTC
+ *	 Generated on Saturday, January 1 2011, 13:03 UTC
  */
 #ifndef PIXHAWK_H
 #define PIXHAWK_H
@@ -17,6 +17,17 @@ extern "C" {
 
 
 #include "../common/common.h"
+// MAVLINK VERSION
+
+#ifndef MAVLINK_VERSION
+#define MAVLINK_VERSION 0
+#endif
+
+#if (MAVLINK_VERSION == 0)
+#undef MAVLINK_VERSION
+#define MAVLINK_VERSION 0
+#endif
+
 // ENUM DEFINITIONS
 
 /** @brief Slugs parameter interface subsets */
