@@ -13,7 +13,10 @@ typedef struct __mavlink_mk_fc_status_t
 
 
 /**
- * @brief Send a mk_fc_status message
+ * @brief Pack a mk_fc_status message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param msg The MAVLink message to compress the data into
  *
  * @param rssi RC Control RSSI on FlightCtrl
  * @param batt Battery Voltage Level
@@ -25,30 +28,57 @@ static inline uint16_t mavlink_msg_mk_fc_status_pack(uint8_t system_id, uint8_t 
 	uint16_t i = 0;
 	msg->msgid = MAVLINK_MSG_ID_MK_FC_STATUS;
 
-	i += put_int16_t_by_index(rssi, i, msg->payload); //RC Control RSSI on FlightCtrl
-	i += put_int16_t_by_index(batt, i, msg->payload); //Battery Voltage Level
-	i += put_int16_t_by_index(gas, i, msg->payload); //Internally computed gas value
+	i += put_int16_t_by_index(rssi, i, msg->payload); // RC Control RSSI on FlightCtrl
+	i += put_int16_t_by_index(batt, i, msg->payload); // Battery Voltage Level
+	i += put_int16_t_by_index(gas, i, msg->payload); // Internally computed gas value
 
 	return mavlink_finalize_message(msg, system_id, component_id, i);
 }
 
+/**
+ * @brief Pack a mk_fc_status message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param chan The MAVLink channel this message was sent over
+ * @param msg The MAVLink message to compress the data into
+ * @param rssi RC Control RSSI on FlightCtrl
+ * @param batt Battery Voltage Level
+ * @param gas Internally computed gas value
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
 static inline uint16_t mavlink_msg_mk_fc_status_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, int16_t rssi, int16_t batt, int16_t gas)
 {
 	uint16_t i = 0;
 	msg->msgid = MAVLINK_MSG_ID_MK_FC_STATUS;
 
-	i += put_int16_t_by_index(rssi, i, msg->payload); //RC Control RSSI on FlightCtrl
-	i += put_int16_t_by_index(batt, i, msg->payload); //Battery Voltage Level
-	i += put_int16_t_by_index(gas, i, msg->payload); //Internally computed gas value
+	i += put_int16_t_by_index(rssi, i, msg->payload); // RC Control RSSI on FlightCtrl
+	i += put_int16_t_by_index(batt, i, msg->payload); // Battery Voltage Level
+	i += put_int16_t_by_index(gas, i, msg->payload); // Internally computed gas value
 
 	return mavlink_finalize_message_chan(msg, system_id, component_id, chan, i);
 }
 
+/**
+ * @brief Encode a mk_fc_status struct into a message
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param msg The MAVLink message to compress the data into
+ * @param mk_fc_status C-struct to read the message contents from
+ */
 static inline uint16_t mavlink_msg_mk_fc_status_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_mk_fc_status_t* mk_fc_status)
 {
 	return mavlink_msg_mk_fc_status_pack(system_id, component_id, msg, mk_fc_status->rssi, mk_fc_status->batt, mk_fc_status->gas);
 }
 
+/**
+ * @brief Send a mk_fc_status message
+ * @param chan MAVLink channel to send the message
+ *
+ * @param rssi RC Control RSSI on FlightCtrl
+ * @param batt Battery Voltage Level
+ * @param gas Internally computed gas value
+ */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
 static inline void mavlink_msg_mk_fc_status_send(mavlink_channel_t chan, int16_t rssi, int16_t batt, int16_t gas)
@@ -100,6 +130,12 @@ static inline int16_t mavlink_msg_mk_fc_status_get_gas(const mavlink_message_t* 
 	return (int16_t)r.s;
 }
 
+/**
+ * @brief Decode a mk_fc_status message into a struct
+ *
+ * @param msg The message to decode
+ * @param mk_fc_status C-struct to decode the message contents into
+ */
 static inline void mavlink_msg_mk_fc_status_decode(const mavlink_message_t* msg, mavlink_mk_fc_status_t* mk_fc_status)
 {
 	mk_fc_status->rssi = mavlink_msg_mk_fc_status_get_rssi(msg);

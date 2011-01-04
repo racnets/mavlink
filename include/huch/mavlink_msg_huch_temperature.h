@@ -12,7 +12,10 @@ typedef struct __mavlink_huch_temperature_t
 
 
 /**
- * @brief Send a huch_temperature message
+ * @brief Pack a huch_temperature message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param msg The MAVLink message to compress the data into
  *
  * @param usec timestamp in microseconds
  * @param temperature temperature in 0.1C
@@ -23,28 +26,53 @@ static inline uint16_t mavlink_msg_huch_temperature_pack(uint8_t system_id, uint
 	uint16_t i = 0;
 	msg->msgid = MAVLINK_MSG_ID_HUCH_TEMPERATURE;
 
-	i += put_uint64_t_by_index(usec, i, msg->payload); //timestamp in microseconds
-	i += put_int32_t_by_index(temperature, i, msg->payload); //temperature in 0.1C
+	i += put_uint64_t_by_index(usec, i, msg->payload); // timestamp in microseconds
+	i += put_int32_t_by_index(temperature, i, msg->payload); // temperature in 0.1C
 
 	return mavlink_finalize_message(msg, system_id, component_id, i);
 }
 
+/**
+ * @brief Pack a huch_temperature message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param chan The MAVLink channel this message was sent over
+ * @param msg The MAVLink message to compress the data into
+ * @param usec timestamp in microseconds
+ * @param temperature temperature in 0.1C
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
 static inline uint16_t mavlink_msg_huch_temperature_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, uint64_t usec, int32_t temperature)
 {
 	uint16_t i = 0;
 	msg->msgid = MAVLINK_MSG_ID_HUCH_TEMPERATURE;
 
-	i += put_uint64_t_by_index(usec, i, msg->payload); //timestamp in microseconds
-	i += put_int32_t_by_index(temperature, i, msg->payload); //temperature in 0.1C
+	i += put_uint64_t_by_index(usec, i, msg->payload); // timestamp in microseconds
+	i += put_int32_t_by_index(temperature, i, msg->payload); // temperature in 0.1C
 
 	return mavlink_finalize_message_chan(msg, system_id, component_id, chan, i);
 }
 
+/**
+ * @brief Encode a huch_temperature struct into a message
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param msg The MAVLink message to compress the data into
+ * @param huch_temperature C-struct to read the message contents from
+ */
 static inline uint16_t mavlink_msg_huch_temperature_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_huch_temperature_t* huch_temperature)
 {
 	return mavlink_msg_huch_temperature_pack(system_id, component_id, msg, huch_temperature->usec, huch_temperature->temperature);
 }
 
+/**
+ * @brief Send a huch_temperature message
+ * @param chan MAVLink channel to send the message
+ *
+ * @param usec timestamp in microseconds
+ * @param temperature temperature in 0.1C
+ */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
 static inline void mavlink_msg_huch_temperature_send(mavlink_channel_t chan, uint64_t usec, int32_t temperature)
@@ -91,6 +119,12 @@ static inline int32_t mavlink_msg_huch_temperature_get_temperature(const mavlink
 	return (int32_t)r.i;
 }
 
+/**
+ * @brief Decode a huch_temperature message into a struct
+ *
+ * @param msg The message to decode
+ * @param huch_temperature C-struct to decode the message contents into
+ */
 static inline void mavlink_msg_huch_temperature_decode(const mavlink_message_t* msg, mavlink_huch_temperature_t* huch_temperature)
 {
 	huch_temperature->usec = mavlink_msg_huch_temperature_get_usec(msg);

@@ -14,7 +14,10 @@ typedef struct __mavlink_huch_magnetic_kompass_t
 
 
 /**
- * @brief Send a huch_magnetic_kompass message
+ * @brief Pack a huch_magnetic_kompass message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param msg The MAVLink message to compress the data into
  *
  * @param usec timestamp in microseconds
  * @param data_x magnetic field x-direction in Gs
@@ -27,32 +30,61 @@ static inline uint16_t mavlink_msg_huch_magnetic_kompass_pack(uint8_t system_id,
 	uint16_t i = 0;
 	msg->msgid = MAVLINK_MSG_ID_HUCH_MAGNETIC_KOMPASS;
 
-	i += put_uint64_t_by_index(usec, i, msg->payload); //timestamp in microseconds
-	i += put_float_by_index(data_x, i, msg->payload); //magnetic field x-direction in Gs
-	i += put_float_by_index(data_y, i, msg->payload); //magnetic field y-direction in Gs
-	i += put_float_by_index(data_z, i, msg->payload); //magnetic field z-direction in Gs
+	i += put_uint64_t_by_index(usec, i, msg->payload); // timestamp in microseconds
+	i += put_float_by_index(data_x, i, msg->payload); // magnetic field x-direction in Gs
+	i += put_float_by_index(data_y, i, msg->payload); // magnetic field y-direction in Gs
+	i += put_float_by_index(data_z, i, msg->payload); // magnetic field z-direction in Gs
 
 	return mavlink_finalize_message(msg, system_id, component_id, i);
 }
 
+/**
+ * @brief Pack a huch_magnetic_kompass message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param chan The MAVLink channel this message was sent over
+ * @param msg The MAVLink message to compress the data into
+ * @param usec timestamp in microseconds
+ * @param data_x magnetic field x-direction in Gs
+ * @param data_y magnetic field y-direction in Gs
+ * @param data_z magnetic field z-direction in Gs
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
 static inline uint16_t mavlink_msg_huch_magnetic_kompass_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, uint64_t usec, float data_x, float data_y, float data_z)
 {
 	uint16_t i = 0;
 	msg->msgid = MAVLINK_MSG_ID_HUCH_MAGNETIC_KOMPASS;
 
-	i += put_uint64_t_by_index(usec, i, msg->payload); //timestamp in microseconds
-	i += put_float_by_index(data_x, i, msg->payload); //magnetic field x-direction in Gs
-	i += put_float_by_index(data_y, i, msg->payload); //magnetic field y-direction in Gs
-	i += put_float_by_index(data_z, i, msg->payload); //magnetic field z-direction in Gs
+	i += put_uint64_t_by_index(usec, i, msg->payload); // timestamp in microseconds
+	i += put_float_by_index(data_x, i, msg->payload); // magnetic field x-direction in Gs
+	i += put_float_by_index(data_y, i, msg->payload); // magnetic field y-direction in Gs
+	i += put_float_by_index(data_z, i, msg->payload); // magnetic field z-direction in Gs
 
 	return mavlink_finalize_message_chan(msg, system_id, component_id, chan, i);
 }
 
+/**
+ * @brief Encode a huch_magnetic_kompass struct into a message
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param msg The MAVLink message to compress the data into
+ * @param huch_magnetic_kompass C-struct to read the message contents from
+ */
 static inline uint16_t mavlink_msg_huch_magnetic_kompass_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_huch_magnetic_kompass_t* huch_magnetic_kompass)
 {
 	return mavlink_msg_huch_magnetic_kompass_pack(system_id, component_id, msg, huch_magnetic_kompass->usec, huch_magnetic_kompass->data_x, huch_magnetic_kompass->data_y, huch_magnetic_kompass->data_z);
 }
 
+/**
+ * @brief Send a huch_magnetic_kompass message
+ * @param chan MAVLink channel to send the message
+ *
+ * @param usec timestamp in microseconds
+ * @param data_x magnetic field x-direction in Gs
+ * @param data_y magnetic field y-direction in Gs
+ * @param data_z magnetic field z-direction in Gs
+ */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
 static inline void mavlink_msg_huch_magnetic_kompass_send(mavlink_channel_t chan, uint64_t usec, float data_x, float data_y, float data_z)
@@ -129,6 +161,12 @@ static inline float mavlink_msg_huch_magnetic_kompass_get_data_z(const mavlink_m
 	return (float)r.f;
 }
 
+/**
+ * @brief Decode a huch_magnetic_kompass message into a struct
+ *
+ * @param msg The message to decode
+ * @param huch_magnetic_kompass C-struct to decode the message contents into
+ */
 static inline void mavlink_msg_huch_magnetic_kompass_decode(const mavlink_message_t* msg, mavlink_huch_magnetic_kompass_t* huch_magnetic_kompass)
 {
 	huch_magnetic_kompass->usec = mavlink_msg_huch_magnetic_kompass_get_usec(msg);

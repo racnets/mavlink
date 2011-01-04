@@ -16,7 +16,10 @@ typedef struct __mavlink_huch_imu_raw_adc_t
 
 
 /**
- * @brief Send a huch_imu_raw_adc message
+ * @brief Pack a huch_imu_raw_adc message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param msg The MAVLink message to compress the data into
  *
  * @param xacc X acceleration (adc units)
  * @param yacc Y acceleration (adc units)
@@ -31,36 +34,69 @@ static inline uint16_t mavlink_msg_huch_imu_raw_adc_pack(uint8_t system_id, uint
 	uint16_t i = 0;
 	msg->msgid = MAVLINK_MSG_ID_HUCH_IMU_RAW_ADC;
 
-	i += put_uint16_t_by_index(xacc, i, msg->payload); //X acceleration (adc units)
-	i += put_uint16_t_by_index(yacc, i, msg->payload); //Y acceleration (adc units)
-	i += put_uint16_t_by_index(zacc, i, msg->payload); //Z acceleration (adc units)
-	i += put_uint16_t_by_index(xgyro, i, msg->payload); //Angular speed around X axis (adc units)
-	i += put_uint16_t_by_index(ygyro, i, msg->payload); //Angular speed around Y axis (adc units)
-	i += put_uint16_t_by_index(zgyro, i, msg->payload); //Angular speed around Z axis (adc units)
+	i += put_uint16_t_by_index(xacc, i, msg->payload); // X acceleration (adc units)
+	i += put_uint16_t_by_index(yacc, i, msg->payload); // Y acceleration (adc units)
+	i += put_uint16_t_by_index(zacc, i, msg->payload); // Z acceleration (adc units)
+	i += put_uint16_t_by_index(xgyro, i, msg->payload); // Angular speed around X axis (adc units)
+	i += put_uint16_t_by_index(ygyro, i, msg->payload); // Angular speed around Y axis (adc units)
+	i += put_uint16_t_by_index(zgyro, i, msg->payload); // Angular speed around Z axis (adc units)
 
 	return mavlink_finalize_message(msg, system_id, component_id, i);
 }
 
+/**
+ * @brief Pack a huch_imu_raw_adc message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param chan The MAVLink channel this message was sent over
+ * @param msg The MAVLink message to compress the data into
+ * @param xacc X acceleration (adc units)
+ * @param yacc Y acceleration (adc units)
+ * @param zacc Z acceleration (adc units)
+ * @param xgyro Angular speed around X axis (adc units)
+ * @param ygyro Angular speed around Y axis (adc units)
+ * @param zgyro Angular speed around Z axis (adc units)
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
 static inline uint16_t mavlink_msg_huch_imu_raw_adc_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, uint16_t xacc, uint16_t yacc, uint16_t zacc, uint16_t xgyro, uint16_t ygyro, uint16_t zgyro)
 {
 	uint16_t i = 0;
 	msg->msgid = MAVLINK_MSG_ID_HUCH_IMU_RAW_ADC;
 
-	i += put_uint16_t_by_index(xacc, i, msg->payload); //X acceleration (adc units)
-	i += put_uint16_t_by_index(yacc, i, msg->payload); //Y acceleration (adc units)
-	i += put_uint16_t_by_index(zacc, i, msg->payload); //Z acceleration (adc units)
-	i += put_uint16_t_by_index(xgyro, i, msg->payload); //Angular speed around X axis (adc units)
-	i += put_uint16_t_by_index(ygyro, i, msg->payload); //Angular speed around Y axis (adc units)
-	i += put_uint16_t_by_index(zgyro, i, msg->payload); //Angular speed around Z axis (adc units)
+	i += put_uint16_t_by_index(xacc, i, msg->payload); // X acceleration (adc units)
+	i += put_uint16_t_by_index(yacc, i, msg->payload); // Y acceleration (adc units)
+	i += put_uint16_t_by_index(zacc, i, msg->payload); // Z acceleration (adc units)
+	i += put_uint16_t_by_index(xgyro, i, msg->payload); // Angular speed around X axis (adc units)
+	i += put_uint16_t_by_index(ygyro, i, msg->payload); // Angular speed around Y axis (adc units)
+	i += put_uint16_t_by_index(zgyro, i, msg->payload); // Angular speed around Z axis (adc units)
 
 	return mavlink_finalize_message_chan(msg, system_id, component_id, chan, i);
 }
 
+/**
+ * @brief Encode a huch_imu_raw_adc struct into a message
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param msg The MAVLink message to compress the data into
+ * @param huch_imu_raw_adc C-struct to read the message contents from
+ */
 static inline uint16_t mavlink_msg_huch_imu_raw_adc_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_huch_imu_raw_adc_t* huch_imu_raw_adc)
 {
 	return mavlink_msg_huch_imu_raw_adc_pack(system_id, component_id, msg, huch_imu_raw_adc->xacc, huch_imu_raw_adc->yacc, huch_imu_raw_adc->zacc, huch_imu_raw_adc->xgyro, huch_imu_raw_adc->ygyro, huch_imu_raw_adc->zgyro);
 }
 
+/**
+ * @brief Send a huch_imu_raw_adc message
+ * @param chan MAVLink channel to send the message
+ *
+ * @param xacc X acceleration (adc units)
+ * @param yacc Y acceleration (adc units)
+ * @param zacc Z acceleration (adc units)
+ * @param xgyro Angular speed around X axis (adc units)
+ * @param ygyro Angular speed around Y axis (adc units)
+ * @param zgyro Angular speed around Z axis (adc units)
+ */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
 static inline void mavlink_msg_huch_imu_raw_adc_send(mavlink_channel_t chan, uint16_t xacc, uint16_t yacc, uint16_t zacc, uint16_t xgyro, uint16_t ygyro, uint16_t zgyro)
@@ -151,6 +187,12 @@ static inline uint16_t mavlink_msg_huch_imu_raw_adc_get_zgyro(const mavlink_mess
 	return (uint16_t)r.s;
 }
 
+/**
+ * @brief Decode a huch_imu_raw_adc message into a struct
+ *
+ * @param msg The message to decode
+ * @param huch_imu_raw_adc C-struct to decode the message contents into
+ */
 static inline void mavlink_msg_huch_imu_raw_adc_decode(const mavlink_message_t* msg, mavlink_huch_imu_raw_adc_t* huch_imu_raw_adc)
 {
 	huch_imu_raw_adc->xacc = mavlink_msg_huch_imu_raw_adc_get_xacc(msg);
