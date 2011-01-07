@@ -18,7 +18,10 @@ typedef struct __mavlink_huch_ctrl_hover_state_t
 
 
 /**
- * @brief Send a huch_ctrl_hover_state message
+ * @brief Pack a huch_ctrl_hover_state message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param msg The MAVLink message to compress the data into
  *
  * @param uss Ultrasonic range measurement in mm
  * @param baro Barometric measurement in mm
@@ -35,40 +38,77 @@ static inline uint16_t mavlink_msg_huch_ctrl_hover_state_pack(uint8_t system_id,
 	uint16_t i = 0;
 	msg->msgid = MAVLINK_MSG_ID_HUCH_CTRL_HOVER_STATE;
 
-	i += put_float_by_index(uss, i, msg->payload); //Ultrasonic range measurement in mm
-	i += put_float_by_index(baro, i, msg->payload); //Barometric measurement in mm
-	i += put_float_by_index(accz, i, msg->payload); //Accelerometer measurement in mm/s^2
-	i += put_float_by_index(ir1, i, msg->payload); //Infrared range measurement in mm
-	i += put_float_by_index(ir2, i, msg->payload); //Infrared range measurement in mm
-	i += put_float_by_index(kal_s0, i, msg->payload); //Kalman state component 0 (pos)
-	i += put_float_by_index(kal_s1, i, msg->payload); //Kalman state component 1 (vel)
-	i += put_float_by_index(kal_s2, i, msg->payload); //Kalman state component 2 (acc)
+	i += put_float_by_index(uss, i, msg->payload); // Ultrasonic range measurement in mm
+	i += put_float_by_index(baro, i, msg->payload); // Barometric measurement in mm
+	i += put_float_by_index(accz, i, msg->payload); // Accelerometer measurement in mm/s^2
+	i += put_float_by_index(ir1, i, msg->payload); // Infrared range measurement in mm
+	i += put_float_by_index(ir2, i, msg->payload); // Infrared range measurement in mm
+	i += put_float_by_index(kal_s0, i, msg->payload); // Kalman state component 0 (pos)
+	i += put_float_by_index(kal_s1, i, msg->payload); // Kalman state component 1 (vel)
+	i += put_float_by_index(kal_s2, i, msg->payload); // Kalman state component 2 (acc)
 
 	return mavlink_finalize_message(msg, system_id, component_id, i);
 }
 
+/**
+ * @brief Pack a huch_ctrl_hover_state message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param chan The MAVLink channel this message was sent over
+ * @param msg The MAVLink message to compress the data into
+ * @param uss Ultrasonic range measurement in mm
+ * @param baro Barometric measurement in mm
+ * @param accz Accelerometer measurement in mm/s^2
+ * @param ir1 Infrared range measurement in mm
+ * @param ir2 Infrared range measurement in mm
+ * @param kal_s0 Kalman state component 0 (pos)
+ * @param kal_s1 Kalman state component 1 (vel)
+ * @param kal_s2 Kalman state component 2 (acc)
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
 static inline uint16_t mavlink_msg_huch_ctrl_hover_state_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, float uss, float baro, float accz, float ir1, float ir2, float kal_s0, float kal_s1, float kal_s2)
 {
 	uint16_t i = 0;
 	msg->msgid = MAVLINK_MSG_ID_HUCH_CTRL_HOVER_STATE;
 
-	i += put_float_by_index(uss, i, msg->payload); //Ultrasonic range measurement in mm
-	i += put_float_by_index(baro, i, msg->payload); //Barometric measurement in mm
-	i += put_float_by_index(accz, i, msg->payload); //Accelerometer measurement in mm/s^2
-	i += put_float_by_index(ir1, i, msg->payload); //Infrared range measurement in mm
-	i += put_float_by_index(ir2, i, msg->payload); //Infrared range measurement in mm
-	i += put_float_by_index(kal_s0, i, msg->payload); //Kalman state component 0 (pos)
-	i += put_float_by_index(kal_s1, i, msg->payload); //Kalman state component 1 (vel)
-	i += put_float_by_index(kal_s2, i, msg->payload); //Kalman state component 2 (acc)
+	i += put_float_by_index(uss, i, msg->payload); // Ultrasonic range measurement in mm
+	i += put_float_by_index(baro, i, msg->payload); // Barometric measurement in mm
+	i += put_float_by_index(accz, i, msg->payload); // Accelerometer measurement in mm/s^2
+	i += put_float_by_index(ir1, i, msg->payload); // Infrared range measurement in mm
+	i += put_float_by_index(ir2, i, msg->payload); // Infrared range measurement in mm
+	i += put_float_by_index(kal_s0, i, msg->payload); // Kalman state component 0 (pos)
+	i += put_float_by_index(kal_s1, i, msg->payload); // Kalman state component 1 (vel)
+	i += put_float_by_index(kal_s2, i, msg->payload); // Kalman state component 2 (acc)
 
 	return mavlink_finalize_message_chan(msg, system_id, component_id, chan, i);
 }
 
+/**
+ * @brief Encode a huch_ctrl_hover_state struct into a message
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param msg The MAVLink message to compress the data into
+ * @param huch_ctrl_hover_state C-struct to read the message contents from
+ */
 static inline uint16_t mavlink_msg_huch_ctrl_hover_state_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_huch_ctrl_hover_state_t* huch_ctrl_hover_state)
 {
 	return mavlink_msg_huch_ctrl_hover_state_pack(system_id, component_id, msg, huch_ctrl_hover_state->uss, huch_ctrl_hover_state->baro, huch_ctrl_hover_state->accz, huch_ctrl_hover_state->ir1, huch_ctrl_hover_state->ir2, huch_ctrl_hover_state->kal_s0, huch_ctrl_hover_state->kal_s1, huch_ctrl_hover_state->kal_s2);
 }
 
+/**
+ * @brief Send a huch_ctrl_hover_state message
+ * @param chan MAVLink channel to send the message
+ *
+ * @param uss Ultrasonic range measurement in mm
+ * @param baro Barometric measurement in mm
+ * @param accz Accelerometer measurement in mm/s^2
+ * @param ir1 Infrared range measurement in mm
+ * @param ir2 Infrared range measurement in mm
+ * @param kal_s0 Kalman state component 0 (pos)
+ * @param kal_s1 Kalman state component 1 (vel)
+ * @param kal_s2 Kalman state component 2 (acc)
+ */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
 static inline void mavlink_msg_huch_ctrl_hover_state_send(mavlink_channel_t chan, float uss, float baro, float accz, float ir1, float ir2, float kal_s0, float kal_s1, float kal_s2)
@@ -201,6 +241,12 @@ static inline float mavlink_msg_huch_ctrl_hover_state_get_kal_s2(const mavlink_m
 	return (float)r.f;
 }
 
+/**
+ * @brief Decode a huch_ctrl_hover_state message into a struct
+ *
+ * @param msg The message to decode
+ * @param huch_ctrl_hover_state C-struct to decode the message contents into
+ */
 static inline void mavlink_msg_huch_ctrl_hover_state_decode(const mavlink_message_t* msg, mavlink_huch_ctrl_hover_state_t* huch_ctrl_hover_state)
 {
 	huch_ctrl_hover_state->uss = mavlink_msg_huch_ctrl_hover_state_get_uss(msg);

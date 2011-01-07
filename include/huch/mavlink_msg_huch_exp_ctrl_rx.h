@@ -15,7 +15,10 @@ typedef struct __mavlink_huch_exp_ctrl_rx_t
 
 
 /**
- * @brief Send a huch_exp_ctrl_rx message
+ * @brief Pack a huch_exp_ctrl_rx message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param msg The MAVLink message to compress the data into
  *
  * @param version 
  * @param value0 
@@ -29,34 +32,65 @@ static inline uint16_t mavlink_msg_huch_exp_ctrl_rx_pack(uint8_t system_id, uint
 	uint16_t i = 0;
 	msg->msgid = MAVLINK_MSG_ID_HUCH_EXP_CTRL_RX;
 
-	i += put_uint8_t_by_index(version, i, msg->payload); //
-	i += put_uint16_t_by_index(value0, i, msg->payload); //
-	i += put_uint16_t_by_index(value1, i, msg->payload); //
-	i += put_uint16_t_by_index(value2, i, msg->payload); //
-	i += put_uint16_t_by_index(value3, i, msg->payload); //
+	i += put_uint8_t_by_index(version, i, msg->payload); // 
+	i += put_uint16_t_by_index(value0, i, msg->payload); // 
+	i += put_uint16_t_by_index(value1, i, msg->payload); // 
+	i += put_uint16_t_by_index(value2, i, msg->payload); // 
+	i += put_uint16_t_by_index(value3, i, msg->payload); // 
 
 	return mavlink_finalize_message(msg, system_id, component_id, i);
 }
 
+/**
+ * @brief Pack a huch_exp_ctrl_rx message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param chan The MAVLink channel this message was sent over
+ * @param msg The MAVLink message to compress the data into
+ * @param version 
+ * @param value0 
+ * @param value1 
+ * @param value2 
+ * @param value3 
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
 static inline uint16_t mavlink_msg_huch_exp_ctrl_rx_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, uint8_t version, uint16_t value0, uint16_t value1, uint16_t value2, uint16_t value3)
 {
 	uint16_t i = 0;
 	msg->msgid = MAVLINK_MSG_ID_HUCH_EXP_CTRL_RX;
 
-	i += put_uint8_t_by_index(version, i, msg->payload); //
-	i += put_uint16_t_by_index(value0, i, msg->payload); //
-	i += put_uint16_t_by_index(value1, i, msg->payload); //
-	i += put_uint16_t_by_index(value2, i, msg->payload); //
-	i += put_uint16_t_by_index(value3, i, msg->payload); //
+	i += put_uint8_t_by_index(version, i, msg->payload); // 
+	i += put_uint16_t_by_index(value0, i, msg->payload); // 
+	i += put_uint16_t_by_index(value1, i, msg->payload); // 
+	i += put_uint16_t_by_index(value2, i, msg->payload); // 
+	i += put_uint16_t_by_index(value3, i, msg->payload); // 
 
 	return mavlink_finalize_message_chan(msg, system_id, component_id, chan, i);
 }
 
+/**
+ * @brief Encode a huch_exp_ctrl_rx struct into a message
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param msg The MAVLink message to compress the data into
+ * @param huch_exp_ctrl_rx C-struct to read the message contents from
+ */
 static inline uint16_t mavlink_msg_huch_exp_ctrl_rx_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_huch_exp_ctrl_rx_t* huch_exp_ctrl_rx)
 {
 	return mavlink_msg_huch_exp_ctrl_rx_pack(system_id, component_id, msg, huch_exp_ctrl_rx->version, huch_exp_ctrl_rx->value0, huch_exp_ctrl_rx->value1, huch_exp_ctrl_rx->value2, huch_exp_ctrl_rx->value3);
 }
 
+/**
+ * @brief Send a huch_exp_ctrl_rx message
+ * @param chan MAVLink channel to send the message
+ *
+ * @param version 
+ * @param value0 
+ * @param value1 
+ * @param value2 
+ * @param value3 
+ */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
 static inline void mavlink_msg_huch_exp_ctrl_rx_send(mavlink_channel_t chan, uint8_t version, uint16_t value0, uint16_t value1, uint16_t value2, uint16_t value3)
@@ -131,6 +165,12 @@ static inline uint16_t mavlink_msg_huch_exp_ctrl_rx_get_value3(const mavlink_mes
 	return (uint16_t)r.s;
 }
 
+/**
+ * @brief Decode a huch_exp_ctrl_rx message into a struct
+ *
+ * @param msg The message to decode
+ * @param huch_exp_ctrl_rx C-struct to decode the message contents into
+ */
 static inline void mavlink_msg_huch_exp_ctrl_rx_decode(const mavlink_message_t* msg, mavlink_huch_exp_ctrl_rx_t* huch_exp_ctrl_rx)
 {
 	huch_exp_ctrl_rx->version = mavlink_msg_huch_exp_ctrl_rx_get_version(msg);
