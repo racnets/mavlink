@@ -4,12 +4,12 @@
 
 typedef struct __mavlink_global_position_int_t 
 {
-	int32_t lat; ///< Latitude / X Position, expressed as * 1E7
-	int32_t lon; ///< Longitude / Y Position, expressed as * 1E7
-	int32_t alt; ///< Altitude / negative Z Position, expressed as * 1000
-	int16_t vx; ///< Ground X Speed, expressed as m/s * 100
-	int16_t vy; ///< Ground Y Speed, expressed as m/s * 100
-	int16_t vz; ///< Ground Z Speed, expressed as m/s * 100
+	int32_t lat; ///< Latitude, expressed as * 1E7
+	int32_t lon; ///< Longitude, expressed as * 1E7
+	int32_t alt; ///< Altitude in meters, expressed as * 1000 (millimeters)
+	int16_t vx; ///< Ground X Speed (Latitude), expressed as m/s * 100
+	int16_t vy; ///< Ground Y Speed (Longitude), expressed as m/s * 100
+	int16_t vz; ///< Ground Z Speed (Altitude), expressed as m/s * 100
 
 } mavlink_global_position_int_t;
 
@@ -21,12 +21,12 @@ typedef struct __mavlink_global_position_int_t
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param lat Latitude / X Position, expressed as * 1E7
- * @param lon Longitude / Y Position, expressed as * 1E7
- * @param alt Altitude / negative Z Position, expressed as * 1000
- * @param vx Ground X Speed, expressed as m/s * 100
- * @param vy Ground Y Speed, expressed as m/s * 100
- * @param vz Ground Z Speed, expressed as m/s * 100
+ * @param lat Latitude, expressed as * 1E7
+ * @param lon Longitude, expressed as * 1E7
+ * @param alt Altitude in meters, expressed as * 1000 (millimeters)
+ * @param vx Ground X Speed (Latitude), expressed as m/s * 100
+ * @param vy Ground Y Speed (Longitude), expressed as m/s * 100
+ * @param vz Ground Z Speed (Altitude), expressed as m/s * 100
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_global_position_int_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, int32_t lat, int32_t lon, int32_t alt, int16_t vx, int16_t vy, int16_t vz)
@@ -34,12 +34,12 @@ static inline uint16_t mavlink_msg_global_position_int_pack(uint8_t system_id, u
 	uint16_t i = 0;
 	msg->msgid = MAVLINK_MSG_ID_GLOBAL_POSITION_INT;
 
-	i += put_int32_t_by_index(lat, i, msg->payload); // Latitude / X Position, expressed as * 1E7
-	i += put_int32_t_by_index(lon, i, msg->payload); // Longitude / Y Position, expressed as * 1E7
-	i += put_int32_t_by_index(alt, i, msg->payload); // Altitude / negative Z Position, expressed as * 1000
-	i += put_int16_t_by_index(vx, i, msg->payload); // Ground X Speed, expressed as m/s * 100
-	i += put_int16_t_by_index(vy, i, msg->payload); // Ground Y Speed, expressed as m/s * 100
-	i += put_int16_t_by_index(vz, i, msg->payload); // Ground Z Speed, expressed as m/s * 100
+	i += put_int32_t_by_index(lat, i, msg->payload); // Latitude, expressed as * 1E7
+	i += put_int32_t_by_index(lon, i, msg->payload); // Longitude, expressed as * 1E7
+	i += put_int32_t_by_index(alt, i, msg->payload); // Altitude in meters, expressed as * 1000 (millimeters)
+	i += put_int16_t_by_index(vx, i, msg->payload); // Ground X Speed (Latitude), expressed as m/s * 100
+	i += put_int16_t_by_index(vy, i, msg->payload); // Ground Y Speed (Longitude), expressed as m/s * 100
+	i += put_int16_t_by_index(vz, i, msg->payload); // Ground Z Speed (Altitude), expressed as m/s * 100
 
 	return mavlink_finalize_message(msg, system_id, component_id, i);
 }
@@ -50,12 +50,12 @@ static inline uint16_t mavlink_msg_global_position_int_pack(uint8_t system_id, u
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message was sent over
  * @param msg The MAVLink message to compress the data into
- * @param lat Latitude / X Position, expressed as * 1E7
- * @param lon Longitude / Y Position, expressed as * 1E7
- * @param alt Altitude / negative Z Position, expressed as * 1000
- * @param vx Ground X Speed, expressed as m/s * 100
- * @param vy Ground Y Speed, expressed as m/s * 100
- * @param vz Ground Z Speed, expressed as m/s * 100
+ * @param lat Latitude, expressed as * 1E7
+ * @param lon Longitude, expressed as * 1E7
+ * @param alt Altitude in meters, expressed as * 1000 (millimeters)
+ * @param vx Ground X Speed (Latitude), expressed as m/s * 100
+ * @param vy Ground Y Speed (Longitude), expressed as m/s * 100
+ * @param vz Ground Z Speed (Altitude), expressed as m/s * 100
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_global_position_int_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, int32_t lat, int32_t lon, int32_t alt, int16_t vx, int16_t vy, int16_t vz)
@@ -63,12 +63,12 @@ static inline uint16_t mavlink_msg_global_position_int_pack_chan(uint8_t system_
 	uint16_t i = 0;
 	msg->msgid = MAVLINK_MSG_ID_GLOBAL_POSITION_INT;
 
-	i += put_int32_t_by_index(lat, i, msg->payload); // Latitude / X Position, expressed as * 1E7
-	i += put_int32_t_by_index(lon, i, msg->payload); // Longitude / Y Position, expressed as * 1E7
-	i += put_int32_t_by_index(alt, i, msg->payload); // Altitude / negative Z Position, expressed as * 1000
-	i += put_int16_t_by_index(vx, i, msg->payload); // Ground X Speed, expressed as m/s * 100
-	i += put_int16_t_by_index(vy, i, msg->payload); // Ground Y Speed, expressed as m/s * 100
-	i += put_int16_t_by_index(vz, i, msg->payload); // Ground Z Speed, expressed as m/s * 100
+	i += put_int32_t_by_index(lat, i, msg->payload); // Latitude, expressed as * 1E7
+	i += put_int32_t_by_index(lon, i, msg->payload); // Longitude, expressed as * 1E7
+	i += put_int32_t_by_index(alt, i, msg->payload); // Altitude in meters, expressed as * 1000 (millimeters)
+	i += put_int16_t_by_index(vx, i, msg->payload); // Ground X Speed (Latitude), expressed as m/s * 100
+	i += put_int16_t_by_index(vy, i, msg->payload); // Ground Y Speed (Longitude), expressed as m/s * 100
+	i += put_int16_t_by_index(vz, i, msg->payload); // Ground Z Speed (Altitude), expressed as m/s * 100
 
 	return mavlink_finalize_message_chan(msg, system_id, component_id, chan, i);
 }
@@ -90,12 +90,12 @@ static inline uint16_t mavlink_msg_global_position_int_encode(uint8_t system_id,
  * @brief Send a global_position_int message
  * @param chan MAVLink channel to send the message
  *
- * @param lat Latitude / X Position, expressed as * 1E7
- * @param lon Longitude / Y Position, expressed as * 1E7
- * @param alt Altitude / negative Z Position, expressed as * 1000
- * @param vx Ground X Speed, expressed as m/s * 100
- * @param vy Ground Y Speed, expressed as m/s * 100
- * @param vz Ground Z Speed, expressed as m/s * 100
+ * @param lat Latitude, expressed as * 1E7
+ * @param lon Longitude, expressed as * 1E7
+ * @param alt Altitude in meters, expressed as * 1000 (millimeters)
+ * @param vx Ground X Speed (Latitude), expressed as m/s * 100
+ * @param vy Ground Y Speed (Longitude), expressed as m/s * 100
+ * @param vz Ground Z Speed (Altitude), expressed as m/s * 100
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -112,7 +112,7 @@ static inline void mavlink_msg_global_position_int_send(mavlink_channel_t chan, 
 /**
  * @brief Get field lat from global_position_int message
  *
- * @return Latitude / X Position, expressed as * 1E7
+ * @return Latitude, expressed as * 1E7
  */
 static inline int32_t mavlink_msg_global_position_int_get_lat(const mavlink_message_t* msg)
 {
@@ -127,7 +127,7 @@ static inline int32_t mavlink_msg_global_position_int_get_lat(const mavlink_mess
 /**
  * @brief Get field lon from global_position_int message
  *
- * @return Longitude / Y Position, expressed as * 1E7
+ * @return Longitude, expressed as * 1E7
  */
 static inline int32_t mavlink_msg_global_position_int_get_lon(const mavlink_message_t* msg)
 {
@@ -142,7 +142,7 @@ static inline int32_t mavlink_msg_global_position_int_get_lon(const mavlink_mess
 /**
  * @brief Get field alt from global_position_int message
  *
- * @return Altitude / negative Z Position, expressed as * 1000
+ * @return Altitude in meters, expressed as * 1000 (millimeters)
  */
 static inline int32_t mavlink_msg_global_position_int_get_alt(const mavlink_message_t* msg)
 {
@@ -157,7 +157,7 @@ static inline int32_t mavlink_msg_global_position_int_get_alt(const mavlink_mess
 /**
  * @brief Get field vx from global_position_int message
  *
- * @return Ground X Speed, expressed as m/s * 100
+ * @return Ground X Speed (Latitude), expressed as m/s * 100
  */
 static inline int16_t mavlink_msg_global_position_int_get_vx(const mavlink_message_t* msg)
 {
@@ -170,7 +170,7 @@ static inline int16_t mavlink_msg_global_position_int_get_vx(const mavlink_messa
 /**
  * @brief Get field vy from global_position_int message
  *
- * @return Ground Y Speed, expressed as m/s * 100
+ * @return Ground Y Speed (Longitude), expressed as m/s * 100
  */
 static inline int16_t mavlink_msg_global_position_int_get_vy(const mavlink_message_t* msg)
 {
@@ -183,7 +183,7 @@ static inline int16_t mavlink_msg_global_position_int_get_vy(const mavlink_messa
 /**
  * @brief Get field vz from global_position_int message
  *
- * @return Ground Z Speed, expressed as m/s * 100
+ * @return Ground Z Speed (Altitude), expressed as m/s * 100
  */
 static inline int16_t mavlink_msg_global_position_int_get_vz(const mavlink_message_t* msg)
 {

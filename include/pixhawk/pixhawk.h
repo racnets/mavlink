@@ -1,7 +1,7 @@
 /** @file
  *	@brief MAVLink comm protocol.
  *	@see http://pixhawk.ethz.ch/software/mavlink
- *	 Generated on Friday, January 7 2011, 10:04 UTC
+ *	 Generated on Wednesday, March 2 2011, 13:12 UTC
  */
 #ifndef PIXHAWK_H
 #define PIXHAWK_H
@@ -35,7 +35,17 @@ enum SLUGS_PID_INDX_IDS
 {
 	PID_YAW_DAMPER=2,
 	PID_PITCH=3, /* With comment: PID Pitch parameter*/
-	PID_ALT_HOLD=50
+	PID_ALT_HOLD=50,
+	SLUGS_PID_INDX_IDS_ENUM_END
+};
+
+/** @brief Content Types for data transmission handshake */
+enum DATA_TYPES
+{
+	DATA_TYPE_JPEG_IMAGE=1,
+	DATA_TYPE_RAW_IMAGE=2,
+	DATA_TYPE_KINECT=3,
+	DATA_TYPES_ENUM_END
 };
 
 
@@ -54,7 +64,6 @@ enum SLUGS_PID_INDX_IDS
 #include "./mavlink_msg_marker.h"
 #include "./mavlink_msg_raw_aux.h"
 #include "./mavlink_msg_aux_status.h"
-#include "./mavlink_msg_control_status.h"
 #include "./mavlink_msg_watchdog_heartbeat.h"
 #include "./mavlink_msg_watchdog_process_info.h"
 #include "./mavlink_msg_watchdog_process_status.h"
@@ -64,6 +73,7 @@ enum SLUGS_PID_INDX_IDS
 #include "./mavlink_msg_point_of_interest_connection.h"
 #include "./mavlink_msg_data_transmission_handshake.h"
 #include "./mavlink_msg_encapsulated_data.h"
+#include "./mavlink_msg_brief_feature.h"
 #ifdef __cplusplus
 }
 #endif

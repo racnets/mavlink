@@ -9,6 +9,13 @@
       <entry name = "PID_PITCH">With comment: PID Pitch parameter</entry>
       <entry name = "PID_ALT_HOLD"  value="50" />
    </enum>
+
+   <enum name="DATA_TYPES">
+      <description>Content Types for data transmission handshake</description>
+      <entry name = "DATA_TYPE_JPEG_IMAGE" value="1" />
+      <entry name = "DATA_TYPE_RAW_IMAGE" value="2" />
+      <entry name = "DATA_TYPE_KINECT" />
+   </enum>
 </enums>
 
 <messages>
@@ -151,16 +158,6 @@
   <field name="uart_total_err_count" type="uint16_t">Number of I2C errors since startup</field>
    </message>
 
-   <message name="CONTROL_STATUS" id="143">
-     <field name="position_fix" type="uint8_t">Position fix: 0: lost, 2: 2D position fix, 3: 3D position fix </field>
-     <field name="vision_fix" type="uint8_t">Vision position fix: 0: lost, 1: 2D local position hold, 2: 2D global position fix, 3: 3D global position fix </field>
-     <field name="gps_fix" type="uint8_t">GPS position fix: 0: no reception, 1: Minimum 1 satellite, but no position fix, 2: 2D position fix, 3: 3D position fix </field>
-     <field name="control_att" type="uint8_t">0: Attitude control disabled, 1: enabled</field>
-<field name="control_pos_xy" type="uint8_t">0: X, Y position control disabled, 1: enabled</field>
-<field name="control_pos_z" type="uint8_t">0: Z position control disabled, 1: enabled</field>
-<field name="control_pos_yaw" type="uint8_t">0: Yaw angle control disabled, 1: enabled</field>
-   </message>
-
   <message name="WATCHDOG_HEARTBEAT" id="150">
     <field name="watchdog_id" type="uint16_t">Watchdog ID</field>
     <field name="process_count" type="uint16_t">Number of processes</field>
@@ -240,6 +237,17 @@
     <field name="seqnr" type="uint16_t">sequence number (starting with 0 on every transmission)</field>
     <field name="data" type="uint8_t[253]">image data bytes</field>
    </message>
+
+  <message name="BRIEF_FEATURE" id="172">
+    <field name="x" type="float">x position in m</field>
+    <field name="y" type="float">y position in m</field>
+    <field name="z" type="float">z position in m</field>
+    <field name="orientation_assignment" type="uint8_t">Orientation assignment 0: false, 1:true</field>
+    <field name="size" type="uint16_t">Size in pixels</field>
+    <field name="orientation" type="uint16_t">Orientation</field>
+    <field name="descriptor" type="uint8_t[32]">Descriptor</field>
+    <field name="response" type="float">Harris operator response at this location</field>
+  </message>
 
 </messages>
 </mavlink>
