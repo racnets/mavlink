@@ -27,7 +27,7 @@ static inline uint16_t mavlink_msg_named_value_float_pack(uint8_t system_id, uin
 	uint16_t i = 0;
 	msg->msgid = MAVLINK_MSG_ID_NAMED_VALUE_FLOAT;
 
-	i += put_array_by_index((int8_t*)name, sizeof(char)*10, i, msg->payload); // Name of the debug variable
+	i += put_array_by_index((const int8_t*)name, sizeof(char)*10, i, msg->payload); // Name of the debug variable
 	i += put_float_by_index(value, i, msg->payload); // Floating point value
 
 	return mavlink_finalize_message(msg, system_id, component_id, i);
@@ -48,7 +48,7 @@ static inline uint16_t mavlink_msg_named_value_float_pack_chan(uint8_t system_id
 	uint16_t i = 0;
 	msg->msgid = MAVLINK_MSG_ID_NAMED_VALUE_FLOAT;
 
-	i += put_array_by_index((int8_t*)name, sizeof(char)*10, i, msg->payload); // Name of the debug variable
+	i += put_array_by_index((const int8_t*)name, sizeof(char)*10, i, msg->payload); // Name of the debug variable
 	i += put_float_by_index(value, i, msg->payload); // Floating point value
 
 	return mavlink_finalize_message_chan(msg, system_id, component_id, chan, i);

@@ -1,7 +1,7 @@
 /** @file
  *	@brief MAVLink comm protocol.
  *	@see http://pixhawk.ethz.ch/software/mavlink
- *	 Generated on Wednesday, March 23 2011, 10:47 UTC
+ *	 Generated on Wednesday, March 23 2011, 12:39 UTC
  */
 #ifndef COMMON_H
 #define COMMON_H
@@ -28,11 +28,7 @@ extern "C" {
 
 // ENUM DEFINITIONS
 
-/** @brief Commands to be executed by the MAV. They can be executed on user request,
-      or as part of a mission script. If the action is used in a mission, the parameter mapping
-      to the waypoint/mission message is as follows:
-      Param 1, Param 2, Param 3, Param 4, X: Param 5, Y:Param 6, Z:Param 7. This command list is similar what
-      ARINC 424 is for commercial aircraft: A data format how to interpret waypoint/mission data. */
+/** @brief Commands to be executed by the MAV. They can be executed on user request,       or as part of a mission script. If the action is used in a mission, the parameter mapping       to the waypoint/mission message is as follows:       Param 1, Param 2, Param 3, Param 4, X: Param 5, Y:Param 6, Z:Param 7. This command list is similar what       ARINC 424 is for commercial aircraft: A data format how to interpret waypoint/mission data. */
 enum MAV_CMD
 {
 	MAV_CMD_NAV_WAYPOINT=16, /* Navigate to waypoint.Hold time in decimal seconds. (ignored by fixed wing, time to stay at waypoint for rotary wing)Acceptance radius in meters (if the sphere with this radius is hit, the waypoint counts as reached)0 to pass through the WP, if > 0 radius in meters to pass by WP. Positive value for clockwise orbit, negative value for counter-clockwise orbit. Allows trajectory control.Desired yaw angle at waypoint (rotary wing)LatitudeLongitudeAltitude*/
@@ -42,8 +38,7 @@ enum MAV_CMD
 	MAV_CMD_NAV_RETURN_TO_LAUNCH=20, /* Return to launch locationEmptyEmptyEmptyEmptyEmptyEmptyEmpty*/
 	MAV_CMD_NAV_LAND=21, /* Land at locationEmptyEmptyEmptyDesired yaw angle.LatitudeLongitudeAltitude*/
 	MAV_CMD_NAV_TAKEOFF=22, /* Takeoff from ground / handMinimum pitch (if airspeed sensor present), desired pitch without sensorEmptyEmptyYaw angle (if magnetometer present), ignored without magnetometerLatitudeLongitudeAltitude*/
-	MAV_CMD_NAV_ORIENTATION_TARGET=80, /* Set the location the system should be heading towards (camera heads or
-        rotary wing aircraft).EmptyEmptyEmptyEmptyLatitudeLongitudeAltitude*/
+	MAV_CMD_NAV_ORIENTATION_TARGET=80, /* Set the location the system should be heading towards (camera heads or         rotary wing aircraft).EmptyEmptyEmptyEmptyLatitudeLongitudeAltitude*/
 	MAV_CMD_NAV_PATHPLANNING=81, /* Control autonomous path planning on the MAV.0: Disable local obstacle avoidance / local path planning (without resetting map), 1: Enable local path planning, 2: Enable and reset local path planning0: Disable full path planning (without resetting map), 1: Enable, 2: Enable and reset map/occupancy grid, 3: Enable and reset planned route, but not occupancy gridEmptyYaw angle at goal, in compass degrees, [0..360]Latitude/X of goalLongitude/Y of goalAltitude/Z of goal*/
 	MAV_CMD_NAV_LAST=95, /* NOP - This command is only used to mark the upper limit of the NAV/ACTION commands in the enumerationEmptyEmptyEmptyEmptyEmptyEmptyEmpty*/
 	MAV_CMD_CONDITION_DELAY=112, /* Delay mission state machine.Delay in seconds (decimal)EmptyEmptyEmptyEmptyEmptyEmpty*/
@@ -63,13 +58,11 @@ enum MAV_CMD
 	MAV_CMD_DO_CONTROL_VIDEO=200, /* Control onboard camera system.Camera ID (-1 for all)Transmission: 0: disabled, 1: enabled compressed, 2: enabled rawTransmission mode: 0: video stream, >0: single images every n seconds (decimal)Recording: 0: disabled, 1: enabled compressed, 2: enabled rawEmptyEmptyEmpty*/
 	MAV_CMD_DO_LAST=240, /* NOP - This command is only used to mark the upper limit of the DO commands in the enumerationEmptyEmptyEmptyEmptyEmptyEmptyEmpty*/
 	MAV_CMD_PREFLIGHT_CALIBRATION=241, /* Trigger calibration. This command will be only accepted if in pre-flight mode.Gyro calibration: 0: no, 1: yesMagnetometer calibration: 0: no, 1: yesGround pressure: 0: no, 1: yesRadio calibration: 0: no, 1: yesEmptyEmptyEmpty*/
-	MAV_CMD_PREFLIGHT_STORAGE=245, /* Request storage of different parameter values and logs. This command will be only accepted if in pre-flight mode.Parameter storage: 0: READ FROM FLASH/EEPROM, 1: WRITE CURRENT TO FLASH/EEPROMMission storage: 0: READ FROM FLASH/EEPROM 1: WRITE CURRENT TO FLASH/EEPROMReservedReservedEmptyEmptyEmpty*/
+	MAV_CMD_PREFLIGHT_STORAGE=245, /* Request storage of different parameter values and logs. This command will be only accepted if in pre-flight mode.Parameter storage: 0: READ FROM FLASH/EEPROM, 1: WRITE CURRENT TO FLASH/EEPROMMission storage: 0: READ FROM FLASH/EEPROM, 1: WRITE CURRENT TO FLASH/EEPROMReservedReservedEmptyEmptyEmpty*/
+	MAV_CMD_ENUM_END
 };
 
-/** @brief Data stream IDs. A data stream is not a fixed set of messages, but rather a
-     recommendation to the autopilot software. Individual autopilots may or may not obey
-     the recommended messages.
-      */
+/** @brief Data stream IDs. A data stream is not a fixed set of messages, but rather a      recommendation to the autopilot software. Individual autopilots may or may not obey      the recommended messages.       */
 enum MAV_DATA_STREAM
 {
 	MAV_DATA_STREAM_ALL=0, /* Enable all data streams*/
@@ -80,7 +73,8 @@ enum MAV_DATA_STREAM
 	MAV_DATA_STREAM_POSITION=6, /* Enable LOCAL_POSITION, GLOBAL_POSITION/GLOBAL_POSITION_INT messages.*/
 	MAV_DATA_STREAM_EXTRA1=10, /* Dependent on the autopilot*/
 	MAV_DATA_STREAM_EXTRA2=11, /* Dependent on the autopilot*/
-	MAV_DATA_STREAM_EXTRA3=12 /* Dependent on the autopilot*/
+	MAV_DATA_STREAM_EXTRA3=12, /* Dependent on the autopilot*/
+	MAV_DATA_STREAM_ENUM_END
 };
 
 

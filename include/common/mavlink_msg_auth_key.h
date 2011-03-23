@@ -25,7 +25,7 @@ static inline uint16_t mavlink_msg_auth_key_pack(uint8_t system_id, uint8_t comp
 	uint16_t i = 0;
 	msg->msgid = MAVLINK_MSG_ID_AUTH_KEY;
 
-	i += put_array_by_index((int8_t*)key, sizeof(char)*32, i, msg->payload); // key
+	i += put_array_by_index((const int8_t*)key, sizeof(char)*32, i, msg->payload); // key
 
 	return mavlink_finalize_message(msg, system_id, component_id, i);
 }
@@ -44,7 +44,7 @@ static inline uint16_t mavlink_msg_auth_key_pack_chan(uint8_t system_id, uint8_t
 	uint16_t i = 0;
 	msg->msgid = MAVLINK_MSG_ID_AUTH_KEY;
 
-	i += put_array_by_index((int8_t*)key, sizeof(char)*32, i, msg->payload); // key
+	i += put_array_by_index((const int8_t*)key, sizeof(char)*32, i, msg->payload); // key
 
 	return mavlink_finalize_message_chan(msg, system_id, component_id, chan, i);
 }

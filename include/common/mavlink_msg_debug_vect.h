@@ -33,7 +33,7 @@ static inline uint16_t mavlink_msg_debug_vect_pack(uint8_t system_id, uint8_t co
 	uint16_t i = 0;
 	msg->msgid = MAVLINK_MSG_ID_DEBUG_VECT;
 
-	i += put_array_by_index((int8_t*)name, sizeof(char)*10, i, msg->payload); // Name
+	i += put_array_by_index((const int8_t*)name, sizeof(char)*10, i, msg->payload); // Name
 	i += put_uint64_t_by_index(usec, i, msg->payload); // Timestamp
 	i += put_float_by_index(x, i, msg->payload); // x
 	i += put_float_by_index(y, i, msg->payload); // y
@@ -60,7 +60,7 @@ static inline uint16_t mavlink_msg_debug_vect_pack_chan(uint8_t system_id, uint8
 	uint16_t i = 0;
 	msg->msgid = MAVLINK_MSG_ID_DEBUG_VECT;
 
-	i += put_array_by_index((int8_t*)name, sizeof(char)*10, i, msg->payload); // Name
+	i += put_array_by_index((const int8_t*)name, sizeof(char)*10, i, msg->payload); // Name
 	i += put_uint64_t_by_index(usec, i, msg->payload); // Timestamp
 	i += put_float_by_index(x, i, msg->payload); // x
 	i += put_float_by_index(y, i, msg->payload); // y
