@@ -28,7 +28,7 @@ static inline uint16_t mavlink_msg_statustext_pack(uint8_t system_id, uint8_t co
 	msg->msgid = MAVLINK_MSG_ID_STATUSTEXT;
 
 	i += put_uint8_t_by_index(severity, i, msg->payload); // Severity of status, 0 = info message, 255 = critical fault
-	i += put_array_by_index((const int8_t*)text, sizeof(int8_t)*50, i, msg->payload); // Status text message, without null termination character
+	i += put_array_by_index((int8_t*)text, sizeof(int8_t)*50, i, msg->payload); // Status text message, without null termination character
 
 	return mavlink_finalize_message(msg, system_id, component_id, i);
 }
@@ -49,7 +49,7 @@ static inline uint16_t mavlink_msg_statustext_pack_chan(uint8_t system_id, uint8
 	msg->msgid = MAVLINK_MSG_ID_STATUSTEXT;
 
 	i += put_uint8_t_by_index(severity, i, msg->payload); // Severity of status, 0 = info message, 255 = critical fault
-	i += put_array_by_index((const int8_t*)text, sizeof(int8_t)*50, i, msg->payload); // Status text message, without null termination character
+	i += put_array_by_index((int8_t*)text, sizeof(int8_t)*50, i, msg->payload); // Status text message, without null termination character
 
 	return mavlink_finalize_message_chan(msg, system_id, component_id, chan, i);
 }

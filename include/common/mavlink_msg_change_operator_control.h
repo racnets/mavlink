@@ -34,7 +34,7 @@ static inline uint16_t mavlink_msg_change_operator_control_pack(uint8_t system_i
 	i += put_uint8_t_by_index(target_system, i, msg->payload); // System the GCS requests control for
 	i += put_uint8_t_by_index(control_request, i, msg->payload); // 0: request control of this MAV, 1: Release control of this MAV
 	i += put_uint8_t_by_index(version, i, msg->payload); // 0: key as plaintext, 1-255: future, different hashing/encryption variants. The GCS should in general use the safest mode possible initially and then gradually move down the encryption level if it gets a NACK message indicating an encryption mismatch.
-	i += put_array_by_index((const int8_t*)passkey, sizeof(char)*25, i, msg->payload); // Password / Key, depending on version plaintext or encrypted. 25 or less characters, NULL terminated. The characters may involve A-Z, a-z, 0-9, and "!?,.-"
+	i += put_array_by_index((int8_t*)passkey, sizeof(char)*25, i, msg->payload); // Password / Key, depending on version plaintext or encrypted. 25 or less characters, NULL terminated. The characters may involve A-Z, a-z, 0-9, and "!?,.-"
 
 	return mavlink_finalize_message(msg, system_id, component_id, i);
 }
@@ -59,7 +59,7 @@ static inline uint16_t mavlink_msg_change_operator_control_pack_chan(uint8_t sys
 	i += put_uint8_t_by_index(target_system, i, msg->payload); // System the GCS requests control for
 	i += put_uint8_t_by_index(control_request, i, msg->payload); // 0: request control of this MAV, 1: Release control of this MAV
 	i += put_uint8_t_by_index(version, i, msg->payload); // 0: key as plaintext, 1-255: future, different hashing/encryption variants. The GCS should in general use the safest mode possible initially and then gradually move down the encryption level if it gets a NACK message indicating an encryption mismatch.
-	i += put_array_by_index((const int8_t*)passkey, sizeof(char)*25, i, msg->payload); // Password / Key, depending on version plaintext or encrypted. 25 or less characters, NULL terminated. The characters may involve A-Z, a-z, 0-9, and "!?,.-"
+	i += put_array_by_index((int8_t*)passkey, sizeof(char)*25, i, msg->payload); // Password / Key, depending on version plaintext or encrypted. 25 or less characters, NULL terminated. The characters may involve A-Z, a-z, 0-9, and "!?,.-"
 
 	return mavlink_finalize_message_chan(msg, system_id, component_id, chan, i);
 }

@@ -66,7 +66,10 @@
 <message name="MK_FC_STATUS" id="109">
 	<field name="rssi" type="int16_t">RC Control RSSI on FlightCtrl</field>
 	<field name="batt" type="int16_t">Battery Voltage Level</field>
-	<field name="gas"  type="int16_t">Internally computed gas value</field>
+	<field name="nick"  type="int16_t">FC internal nick value (steering.StickNick)</field>
+	<field name="roll"  type="int16_t">FC internal roll value (steering.StickRoll)</field>
+	<field name="yaw"  type="int16_t">FC internal yaw value (steering.StickYaw)</field>
+	<field name="gas"  type="int16_t">FC internal gas value (GasMixFraction)</field>
 </message>
 
 <message name="HUCH_CTRL_HOVER_STATE" id="110">
