@@ -11,7 +11,7 @@
 int sock;
 struct sockaddr_in server_addr;
 struct hostent *host;
-char txbuf[1024];
+uint8_t txbuf[1024];
 
 int main() {
 	int txbytes;

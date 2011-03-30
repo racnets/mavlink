@@ -5,9 +5,11 @@ MODULE_FILES = _$(MODULE).so $(MODULE).py $(MODULE).pyc $(MODULE)_wrap.c
 all: swig setup $(PROGS)
 
 SWIG = /usr/bin/swig2.0
+SWIGFLAGS = -python
+SWIGFLAGS = -I/usr/include -I/usr/include/linux -I../include -I../include/huch -includeall -python
 
 swig:
-	$(SWIG) -python $(MODULE).i
+	$(SWIG) $(SWIGFLAGS) $(MODULE).i
 
 setup:
 	python setup.py build_ext --inplace
