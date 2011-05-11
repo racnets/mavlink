@@ -146,6 +146,22 @@
 	<field name="beta" type="float">home direction</field>
 </message>
 
+<message name="HUCH_ANALOG" id="119">
+	<description>The readings for an analog sensor in meters</description>
+	<field name="usec"  type="uint64_t">timestamp in microseconds</field>
+	<field name="analog"  type="int32_t">analog value in ADC units</field>
+</message>
+
+<message name="HUCH_HC_RAW" id="120">
+	<description>hover control: raw altitude readings</description>
+	<field name="usec"  type="uint64_t">timestamp in microseconds</field>
+	<field name="raw0"  type="int32_t">raw altitude readings for logging and playback to controller</field>
+	<field name="raw1"  type="int32_t">raw altitude readings for logging and playback to controller</field>
+	<field name="raw2"  type="int32_t">raw altitude readings for logging and playback to controller</field>
+	<field name="raw3"  type="int32_t">raw altitude readings for logging and playback to controller</field>
+	<field name="raw4"  type="int32_t">raw altitude readings for logging and playback to controller</field>
+</message>
+
 	<!-- <message name="MK_DEBUGOUT" id="100"> -->
 	<!-- 	HUCH Mikrokopter DebugOut -->
 	<!-- 	<field name="d1" type="uint8_t"></field> -->
