@@ -136,14 +136,15 @@
 	<field name="distance" type="float">relativ distance in meter</field>
 </message>
 
-<message name="HUCH_WARPING" id="118">
-	<description>Warping output</description>
-	<field name="alpha" type="float">warping movement direction</field>
-	<field name="psi" type="float">warping compass</field>
-	<field name="rho" type="float">warping relative distance</field>
-	<field name="distance" type="int32_t">minimal image distance</field>
-	<field name="psi_estimate" type="float">compass estimate</field>
+<message name="HUCH_VISUAL_NAVIGATION" id="118">
+	<description>Visual Navigation Information</description>
+	<field name="alt_velocity" type="float">altitude velocity</field>
+	<field name="psi_warping" type="float">warping compass estimate</field>
+	<field name="psi_vc" type="float">visual compass estimate</field>
 	<field name="beta" type="float">home direction</field>
+	<field name="distance" type="int32_t">minimal image distance </field>
+	<field name="home" type="int16_t">home signal (0/1)</field>
+        <field name="outlier" type="int16_t">current outlier count</field>
 </message>
 
 <message name="HUCH_ANALOG" id="119">
