@@ -137,14 +137,16 @@
 </message>
 
 <message name="HUCH_VISUAL_NAVIGATION" id="118">
-	<description>Visual Navigation Information</description>
 	<field name="alt_velocity" type="float">altitude velocity</field>
-	<field name="psi_warping" type="float">warping compass estimate</field>
-	<field name="psi_vc" type="float">visual compass estimate</field>
-	<field name="beta" type="float">home direction</field>
-	<field name="distance" type="int32_t">minimal image distance </field>
-	<field name="home" type="int16_t">home signal (0/1)</field>
-        <field name="outlier" type="int16_t">current outlier count</field>
+	<field name="alt_absolute" type="float">altitude absolute value</field>
+	<field name="home_beta" type="float">home direction</field>
+	<field name="home_distance" type="float">home distance</field>
+	<field name="visual_compass" type="float">visual compass</field>
+	<field name="ego_beta" type="float">lateral movement direction</field>
+	<field name="ego_speed" type="float">lateral movement speed</field>
+	<field name="keypoints" type="int16_t">tracked keypoints</field>
+	<field name="error" type="int16_t">error code</field>
+	<field name="debug" type="float">debug information</field>
 </message>
 
 <message name="HUCH_ANALOG" id="119">
