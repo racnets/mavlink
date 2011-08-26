@@ -167,6 +167,8 @@
 
 <message name="HUCH_SENSOR_ARRAY" id="121">
 	<!-- <field name="seqnr" type="uint16_t">sequence number (starting with 0 on every transmission)</field> -->
+	<description>Generic sensor readings packed in locally defined order</description>
+	<field name="usec"  type="uint64_t">timestamp in microseconds</field>
 	<field name="data" type="double[64]">64-vector of generic double</field>
 </message>
 
