@@ -165,6 +165,11 @@
 	<field name="raw4"  type="int32_t">raw altitude readings for logging and playback to controller</field>
 </message>
 
+<message name="HUCH_SENSOR_ARRAY" id="121">
+	<!-- <field name="seqnr" type="uint16_t">sequence number (starting with 0 on every transmission)</field> -->
+	<field name="data" type="double[64]">64-vector of generic double</field>
+</message>
+
 	<!-- <message name="MK_DEBUGOUT" id="100"> -->
 	<!-- 	HUCH Mikrokopter DebugOut -->
 	<!-- 	<field name="d1" type="uint8_t"></field> -->
