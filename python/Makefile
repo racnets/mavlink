@@ -6,7 +6,7 @@ all: swig setup $(PROGS)
 
 SWIG = /usr/bin/swig2.0
 SWIGFLAGS = -python
-SWIGFLAGS = -I/usr/include -I/usr/include/linux -I../include -I../include/huch -includeall -python
+SWIGFLAGS = -I/usr/include -I/usr/include/linux -I/usr/include/i386-linux-gnu -I../include -I../include/huch -includeall -python
 
 swig:
 	$(SWIG) $(SWIGFLAGS) $(MODULE).i

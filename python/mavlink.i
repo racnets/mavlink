@@ -25,7 +25,7 @@ typedef int int32_t;
 // mavlink types
 #include "../include/mavlink_types.h"
 #include "./mavlink_msg_huch_attitude.h"
-#include "./mavlink_msg_huch_warping.h"
+#include "./mavlink_msg_huch_visual_navigation.h"
 // XXX: including protocol produces locale error
 // #include "../include/protocol.h"
 // #include "../include/huch/huch.h"

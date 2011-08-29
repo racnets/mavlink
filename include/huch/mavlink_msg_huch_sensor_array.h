@@ -5,11 +5,11 @@
 typedef struct __mavlink_huch_sensor_array_t 
 {
 	uint64_t usec; ///< timestamp in microseconds
-	double data[64]; ///< 64-vector of generic double
+	double data[16]; ///< 64-vector of generic double
 
 } mavlink_huch_sensor_array_t;
 
-#define MAVLINK_MSG_HUCH_SENSOR_ARRAY_FIELD_DATA_LEN 64
+#define MAVLINK_MSG_HUCH_SENSOR_ARRAY_FIELD_DATA_LEN 16
 
 
 /**
@@ -28,7 +28,7 @@ static inline uint16_t mavlink_msg_huch_sensor_array_pack(uint8_t system_id, uin
 	msg->msgid = MAVLINK_MSG_ID_HUCH_SENSOR_ARRAY;
 
 	i += put_uint64_t_by_index(usec, i, msg->payload); // timestamp in microseconds
-	i += put_array_by_index((const int8_t*)data, sizeof(double)*64, i, msg->payload); // 64-vector of generic double
+	i += put_array_by_index((const int8_t*)data, sizeof(double)*16, i, msg->payload); // 64-vector of generic double
 
 	return mavlink_finalize_message(msg, system_id, component_id, i);
 }
@@ -49,7 +49,7 @@ static inline uint16_t mavlink_msg_huch_sensor_array_pack_chan(uint8_t system_id
 	msg->msgid = MAVLINK_MSG_ID_HUCH_SENSOR_ARRAY;
 
 	i += put_uint64_t_by_index(usec, i, msg->payload); // timestamp in microseconds
-	i += put_array_by_index((const int8_t*)data, sizeof(double)*64, i, msg->payload); // 64-vector of generic double
+	i += put_array_by_index((const int8_t*)data, sizeof(double)*16, i, msg->payload); // 64-vector of generic double
 
 	return mavlink_finalize_message_chan(msg, system_id, component_id, chan, i);
 }
@@ -113,8 +113,8 @@ static inline uint64_t mavlink_msg_huch_sensor_array_get_usec(const mavlink_mess
 static inline uint16_t mavlink_msg_huch_sensor_array_get_data(const mavlink_message_t* msg, double* r_data)
 {
 
-	memcpy(r_data, msg->payload+sizeof(uint64_t), sizeof(double)*64);
-	return sizeof(double)*64;
+	memcpy(r_data, msg->payload+sizeof(uint64_t), sizeof(double)*16);
+	return sizeof(double)*16;
 }
 
 /**
