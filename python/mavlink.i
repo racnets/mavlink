@@ -18,14 +18,21 @@
 // #include "../include/mavlink_types.h"
 
 // generic types
-typedef unsigned char uint8_t;
+//typedef unsigned char uint8_t;
 typedef signed short int16_t;
 typedef int int32_t;
 
+
+// %apply (char *STRING, int LENGTH) { (const void *, size_t)}
+//%apply (char *STRING, int LENGTH) { (int8_t *, size_t)}
+
 // mavlink types
-#include "../include/mavlink_types.h"
+//#include "../protocol.h"
+#include "../mavlink_types.h"
 #include "./mavlink_msg_huch_attitude.h"
 #include "./mavlink_msg_huch_visual_navigation.h"
+#include "./common/mavlink_msg_debug.h"
+#include "./common/mavlink_msg_param_set.h"
 // XXX: including protocol produces locale error
 // #include "../include/protocol.h"
 // #include "../include/huch/huch.h"
@@ -83,3 +90,9 @@ void mavlink_message_from_data(mavlink_message_t* msg, char* data, int len);
 static inline void mavlink_msg_huch_attitude_decode(const mavlink_message_t* msg, mavlink_huch_attitude_t* huch_attitude);
  
 static inline uint8_t mavlink_parse_char(uint8_t chan, uint8_t c, mavlink_message_t* r_message, mavlink_status_t* r_mavlink_status);
+
+// check param_set
+void mavlink_param_set_param_id(mavlink_param_set_t* param, char* str);
+char* mavlink_param_get_param_id(mavlink_param_set_t* param);
+
+char* mavlink_msg_to_send_buffer_2(const mavlink_message_t* msg);
