@@ -177,7 +177,7 @@
 	<description>Simulation environment control</description>
 	<field name="usec"  type="uint64_t">timestamp in microseconds</field>
 	<field name="cmd" type="int16_t">command</field>
-	<field name="arg" type="double">command argument</field>
+	<field name="arg" type="float">command argument</field>
 </message>
 
 	<!-- <message name="MK_DEBUGOUT" id="100"> -->

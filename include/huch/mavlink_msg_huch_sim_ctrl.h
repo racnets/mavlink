@@ -6,7 +6,7 @@ typedef struct __mavlink_huch_sim_ctrl_t
 {
 	uint64_t usec; ///< timestamp in microseconds
 	int16_t cmd; ///< command
-	double arg; ///< command argument
+	float arg; ///< command argument
 
 } mavlink_huch_sim_ctrl_t;
 
@@ -23,14 +23,14 @@ typedef struct __mavlink_huch_sim_ctrl_t
  * @param arg command argument
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_huch_sim_ctrl_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, uint64_t usec, int16_t cmd, double arg)
+static inline uint16_t mavlink_msg_huch_sim_ctrl_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, uint64_t usec, int16_t cmd, float arg)
 {
 	uint16_t i = 0;
 	msg->msgid = MAVLINK_MSG_ID_HUCH_SIM_CTRL;
 
 	i += put_uint64_t_by_index(usec, i, msg->payload); // timestamp in microseconds
 	i += put_int16_t_by_index(cmd, i, msg->payload); // command
-	i += put_double_by_index(arg, i, msg->payload); // command argument
+	i += put_float_by_index(arg, i, msg->payload); // command argument
 
 	return mavlink_finalize_message(msg, system_id, component_id, i);
 }
@@ -46,14 +46,14 @@ static inline uint16_t mavlink_msg_huch_sim_ctrl_pack(uint8_t system_id, uint8_t
  * @param arg command argument
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_huch_sim_ctrl_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, uint64_t usec, int16_t cmd, double arg)
+static inline uint16_t mavlink_msg_huch_sim_ctrl_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, uint64_t usec, int16_t cmd, float arg)
 {
 	uint16_t i = 0;
 	msg->msgid = MAVLINK_MSG_ID_HUCH_SIM_CTRL;
 
 	i += put_uint64_t_by_index(usec, i, msg->payload); // timestamp in microseconds
 	i += put_int16_t_by_index(cmd, i, msg->payload); // command
-	i += put_double_by_index(arg, i, msg->payload); // command argument
+	i += put_float_by_index(arg, i, msg->payload); // command argument
 
 	return mavlink_finalize_message_chan(msg, system_id, component_id, chan, i);
 }
@@ -81,7 +81,7 @@ static inline uint16_t mavlink_msg_huch_sim_ctrl_encode(uint8_t system_id, uint8
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_huch_sim_ctrl_send(mavlink_channel_t chan, uint64_t usec, int16_t cmd, double arg)
+static inline void mavlink_msg_huch_sim_ctrl_send(mavlink_channel_t chan, uint64_t usec, int16_t cmd, float arg)
 {
 	mavlink_message_t msg;
 	mavlink_msg_huch_sim_ctrl_pack_chan(mavlink_system.sysid, mavlink_system.compid, chan, &msg, usec, cmd, arg);
@@ -128,9 +128,14 @@ static inline int16_t mavlink_msg_huch_sim_ctrl_get_cmd(const mavlink_message_t*
  *
  * @return command argument
  */
-static inline double mavlink_msg_huch_sim_ctrl_get_arg(const mavlink_message_t* msg)
+static inline float mavlink_msg_huch_sim_ctrl_get_arg(const mavlink_message_t* msg)
 {
-
+	generic_32bit r;
+	r.b[3] = (msg->payload+sizeof(uint64_t)+sizeof(int16_t))[0];
+	r.b[2] = (msg->payload+sizeof(uint64_t)+sizeof(int16_t))[1];
+	r.b[1] = (msg->payload+sizeof(uint64_t)+sizeof(int16_t))[2];
+	r.b[0] = (msg->payload+sizeof(uint64_t)+sizeof(int16_t))[3];
+	return (float)r.f;
 }
 
 /**

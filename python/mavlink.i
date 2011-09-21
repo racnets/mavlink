@@ -31,9 +31,14 @@ typedef int int32_t;
 #include "../mavlink_types.h"
 #include "./mavlink_msg_huch_attitude.h"
 #include "./mavlink_msg_huch_visual_navigation.h"
+#include "./mavlink_msg_huch_sim_ctrl.h"
 #include "./common/mavlink_msg_debug.h"
 #include "./common/mavlink_msg_param_set.h"
-// XXX: including protocol produces locale error
+#include "./common/mavlink_msg_attitude.h"
+#include "./common/mavlink_msg_local_position.h"
+#include "./huch/mavlink_msg_huch_sensor_array.h"
+#include "./common/mavlink_msg_sys_status.h"
+// FIXME: including protocol produces locale error
 // #include "../include/protocol.h"
 // #include "../include/huch/huch.h"
 
@@ -83,16 +88,19 @@ typedef int int32_t;
 // } mavlink_huch_attitude_t;
 
 // custom functions
-// mavlink_message_t* mavlink_message_from_data(mavlink_message_t* msg, char* data, int len);
+// FIXME: stolen from mavlink repo
 void mavlink_message_from_data(mavlink_message_t* msg, char* data, int len);
+// FIXME: sending
+char* mavlink_msg_to_send_buffer_2(const mavlink_message_t* msg);
 
-// mavlink functions
-static inline void mavlink_msg_huch_attitude_decode(const mavlink_message_t* msg, mavlink_huch_attitude_t* huch_attitude);
- 
+// message parsing
 static inline uint8_t mavlink_parse_char(uint8_t chan, uint8_t c, mavlink_message_t* r_message, mavlink_status_t* r_mavlink_status);
 
-// check param_set
+// parameters
+// FIXME: these are hacks
 void mavlink_param_set_param_id(mavlink_param_set_t* param, char* str);
 char* mavlink_param_get_param_id(mavlink_param_set_t* param);
 
-char* mavlink_msg_to_send_buffer_2(const mavlink_message_t* msg);
+// mavlink functions
+static inline void mavlink_msg_huch_attitude_decode(const mavlink_message_t* msg, mavlink_huch_attitude_t* huch_attitude);
+static inline void mavlink_msg_huch_sim_ctrl_decode(const mavlink_message_t* msg, mavlink_huch_sim_ctrl_t* sim_ctrl);
