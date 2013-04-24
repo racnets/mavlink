@@ -1,0 +1,304 @@
+<?xml version='1.0'?>
+<mavlink>
+     <include>common.xml</include>
+     <include>pixhawk.xml</include>
+     <!-- note that HUCH specific messages should use the command id
+      range from 200 to 240, to leave plenty of room for growth
+      of common.xml and ardupilotmega.xml
+     -->
+     <enums>
+          <enum name="HUCH_MAV_ACTION">
+               <description></description>
+               <entry value="0" name="MAV_ACTION_HOLD"></entry>
+               <entry value="1" name="MAV_ACTION_MOTORS_START"></entry>
+               <entry value="2" name="MAV_ACTION_LAUNCH"></entry>
+               <entry value="3" name="MAV_ACTION_RETURN"></entry>
+               <entry value="4" name="MAV_ACTION_EMCY_LAND"></entry>
+               <entry value="5" name="MAV_ACTION_EMCY_KILL"></entry>
+               <entry value="6" name="MAV_ACTION_CONFIRM_KILL"></entry>
+               <entry value="7" name="MAV_ACTION_CONTINUE"></entry>
+               <entry value="8" name="MAV_ACTION_MOTORS_STOP"></entry>
+               <entry value="9" name="MAV_ACTION_HALT"></entry>
+               <entry value="10" name="MAV_ACTION_SHUTDOWN"></entry>
+               <entry value="11" name="MAV_ACTION_REBOOT"></entry>
+               <entry value="12" name="MAV_ACTION_SET_MANUAL"></entry>
+               <entry value="13" name="MAV_ACTION_SET_AUTO"></entry>
+               <entry value="14" name="MAV_ACTION_STORAGE_READ"></entry>
+               <entry value="15" name="MAV_ACTION_STORAGE_WRITE"></entry>
+               <entry value="16" name="MAV_ACTION_CALIBRATE_RC"></entry>
+               <entry value="17" name="MAV_ACTION_CALIBRATE_GYRO"></entry>
+               <entry value="18" name="MAV_ACTION_CALIBRATE_MAG"></entry>
+               <entry value="19" name="MAV_ACTION_CALIBRATE_ACC"></entry>
+               <entry value="20" name="MAV_ACTION_CALIBRATE_PRESSURE"></entry>
+               <entry value="21" name="MAV_ACTION_REC_START"></entry>
+               <entry value="22" name="MAV_ACTION_REC_PAUSE"></entry>
+               <entry value="23" name="MAV_ACTION_REC_STOP"></entry>
+               <entry value="24" name="MAV_ACTION_TAKEOFF"></entry>
+               <entry value="25" name="MAV_ACTION_NAVIGATE"></entry>
+               <entry value="26" name="MAV_ACTION_LAND"></entry>
+               <entry value="27" name="MAV_ACTION_LOITER"></entry>
+               <entry value="28" name="MAV_ACTION_SET_ORIGIN"></entry>
+               <entry value="29" name="MAV_ACTION_RELAY_ON"></entry>
+               <entry value="30" name="MAV_ACTION_RELAY_OFF"></entry>
+               <entry value="31" name="MAV_ACTION_GET_IMAGE"></entry>
+               <entry value="32" name="MAV_ACTION_VIDEO_START"></entry>
+               <entry value="33" name="MAV_ACTION_VIDEO_STOP"></entry>
+               <entry value="34" name="MAV_ACTION_RESET_MAP"></entry>
+               <entry value="35" name="MAV_ACTION_RESET_PLAN"></entry>
+               <entry value="36" name="MAV_ACTION_DELAY_BEFORE_COMMAND"></entry>
+               <entry value="37" name="MAV_ACTION_ASCEND_AT_RATE"></entry>
+               <entry value="38" name="MAV_ACTION_CHANGE_MODE"></entry>
+               <entry value="39" name="MAV_ACTION_LOITER_MAX_TURNS"></entry>
+               <entry value="40" name="MAV_ACTION_LOITER_MAX_TIME"></entry>
+               <entry value="41" name="MAV_ACTION_START_HILSIM"></entry>
+               <entry value="42" name="MAV_ACTION_STOP_HILSIM"></entry> 
+               <entry value="43" name="MAV_ACTION_BUMP_ROLL"></entry> 
+               <entry value="44" name="MAV_ACTION_TOGGLE_AC"></entry> 
+               <entry value="45" name="MAV_ACTION_TOGGLE_LC"></entry> 
+          </enum>
+          <enum name="HUCH_LIN_SEN_CTRL_CMD">
+            <description>commands for huch linSen</description>
+               <entry name = "LIN_SEN_DEBUG_RAW_LINE"></entry>
+               <entry name = "LIN_SEN_EXPOSURE_GET"></entry>
+               <entry name = "LIN_SEN_EXPOSURE_SET"></entry>
+               <entry name = "LIN_SEN_PIX_CLK_GET"></entry>
+               <entry name = "LIN_SEN_PIX_CLK_SET"></entry>
+               <entry name = "LIN_SEN_GAIN_GET"></entry>
+               <entry name = "LIN_SEN_GAIN_SET"></entry>
+               <entry name = "LIN_SEN_DEBUG"></entry>
+               <entry name = "LIN_SEN_RESULT"></entry>
+               <entry name = "LIN_SEN_AVG_GET"></entry>
+               <entry name = "LIN_SEN_AVG_SET"></entry>
+               <entry name = "LIN_SEN_ALGO_GET"></entry>
+               <entry name = "LIN_SEN_ALGO_SET"></entry>
+               <entry name = "LIN_SEN_LED_GREEN"></entry>
+               <entry name = "LIN_SEN_LED_BLUE"></entry>
+          </enum>
+    </enums>
+
+     <messages>
+          <message id="199" name="MK_DEBUGOUT">
+               <description>HUCH Mikrokopter DebugOut</description>
+               <field type="array[66]" name="debugout">66 bytes of Debugout data. See qk_datatypes.h</field>
+          </message>
+          <message id="201" name="MK_EXTERN_CONTROL">
+               <field type="uint8_t" name="remote_buttons"/>
+               <field type="int8_t" name="nick"/>
+               <field type="int8_t" name="roll"/>
+               <field type="int8_t" name="yaw"/>
+               <field type="uint16_t" name="gas"/>
+               <field type="uint16_t" name="height"/>
+               <field type="uint8_t" name="AP_flags"/>
+               <field type="uint8_t" name="frame"/>
+               <field type="uint8_t" name="config"/>
+          </message>
+          <message id="202" name="HUCH_EXP_CTRL">
+               <field type="uint8_t" name="status"/>
+               <field type="array[9]" name="rx"/>
+               <field type="array[2]" name="tx"/>
+          </message>
+          <message id="203" name="HUCH_ATTITUDE">
+               <field type="int16_t" name="xacc"/>
+               <field type="int16_t" name="yacc"/>
+               <field type="int16_t" name="zacc"/>
+               <field type="int16_t" name="zaccraw"/>
+               <field type="int16_t" name="xaccmean"/>
+               <field type="int16_t" name="yaccmean"/>
+               <field type="int16_t" name="zaccmean"/>
+               <field type="int16_t" name="xgyro"/>
+               <field type="int16_t" name="ygyro"/>
+               <field type="int16_t" name="zgyro"/>
+               <field type="int32_t" name="xgyroint"/>
+               <field type="int32_t" name="ygyroint"/>
+               <field type="int32_t" name="zgyroint"/>
+               <field type="int16_t" name="xmag"/>
+               <field type="int16_t" name="ymag"/>
+               <field type="int16_t" name="zmag"/>
+          </message>
+          <message id="204" name="HUCH_FC_ALTITUDE">
+               <field type="int16_t" name="baro"/>
+               <field type="int16_t" name="baroref"/>
+          </message>
+          <message id="205" name="HUCH_RANGER">
+               <field type="uint16_t" name="ranger1"/>
+               <field type="uint16_t" name="ranger2"/>
+               <field type="uint16_t" name="ranger3"/>
+          </message>
+          <message id="207" name="HUCH_EXP_CTRL_RX">
+               <field type="uint8_t" name="version"/>
+               <field type="uint16_t" name="value0"/>
+               <field type="uint16_t" name="value1"/>
+               <field type="uint16_t" name="value2"/>
+               <field type="uint16_t" name="value3"/>
+          </message>
+          <message id="209" name="MK_FC_STATUS">
+               <field type="int16_t" name="rssi">RC Control RSSI on FlightCtrl</field>
+               <field type="int16_t" name="batt">Battery Voltage Level</field>
+               <field type="int16_t" name="nick">FC internal nick value (steering.StickNick)</field>
+               <field type="int16_t" name="roll">FC internal roll value (steering.StickRoll)</field>
+               <field type="int16_t" name="yaw">FC internal yaw value (steering.StickYaw)</field>
+               <field type="int16_t" name="gas">FC internal gas value (GasMixFraction)</field>
+          </message>
+          <message id="210" name="HUCH_CTRL_HOVER_STATE">
+               <field type="float" name="uss">Ultrasonic range measurement in mm</field>
+               <field type="float" name="baro">Barometric measurement in mm</field>
+               <field type="float" name="accz">Accelerometer measurement in mm/s^2</field>
+               <field type="float" name="ir1">Infrared range measurement in mm</field>
+               <field type="float" name="ir2">Infrared range measurement in mm</field>
+               <field type="float" name="kal_s0">Kalman state component 0 (pos)</field>
+               <field type="float" name="kal_s1">Kalman state component 1 (vel)</field>
+               <field type="float" name="kal_s2">Kalman state component 2 (acc)</field>
+          </message>
+          <message id="211" name="HUCH_IMU_RAW_ADC">
+               <description>The RAW IMU ADC values, not calibrated, not scaled, not filtered!</description>
+               <field type="uint16_t" name="xacc">X acceleration (adc units)</field>
+               <field type="uint16_t" name="yacc">Y acceleration (adc units)</field>
+               <field type="uint16_t" name="zacc">Z acceleration (adc units)</field>
+               <field type="uint16_t" name="xgyro">Angular speed around X axis (adc units)</field>
+               <field type="uint16_t" name="ygyro">Angular speed around Y axis (adc units)</field>
+               <field type="uint16_t" name="zgyro">Angular speed around Z axis (adc units)</field>
+          </message>
+          <message id="212" name="HUCH_MK_IMU">
+               <description>The MikoKopter IMU values, (calibrated), scaled and filtered!</description>
+               <field type="uint64_t" name="usec">Timestamp (microseconds since UNIX epoch)</field>
+               <field type="int16_t" name="xacc">Calibrated X acceleration (mg)</field>
+               <field type="int16_t" name="yacc">Calibrated Y acceleration (mg)</field>
+               <field type="int16_t" name="zacc">Calibrated Z acceleration (mg)</field>
+               <field type="int16_t" name="xgyro">Uncalibrated angular speed around X axis (0.1 deg/sec)</field>
+               <field type="int16_t" name="ygyro">Uncalibrated angular speed around Y axis (0.1 deg/sec)</field>
+               <field type="int16_t" name="zgyro">Uncalibrated angular speed around Z axis (0.1 deg/sec)</field>
+          </message>
+          <message id="213" name="HUCH_RAW_PRESSURE">
+               <description>The RAW pressure readings for a pressure sensor in pascal</description>
+               <field type="uint64_t" name="usec">timestamp in microseconds</field>
+               <field type="int32_t" name="pressure">pressure in pascal</field>
+          </message>
+          <message id="214" name="HUCH_ALTITUDE">
+               <description>The readings for an altitude sensor in meters</description>
+               <field type="uint64_t" name="usec">timestamp in microseconds</field>
+               <field type="float" name="altitude">absolute altitude in meter</field>
+          </message>
+          <message id="215" name="HUCH_TEMPERATURE">
+               <description>The readings for an temperature sensor in meters</description>
+               <field type="uint64_t" name="usec">timestamp in microseconds</field>
+               <field type="int32_t" name="temperature">temperature in 0.1C</field>
+          </message>
+          <message id="216" name="HUCH_MAGNETIC_KOMPASS">
+               <description>The readings for a 3D magnetic field sensor in Gauss</description>
+               <field type="uint64_t" name="usec">timestamp in microseconds</field>
+               <field type="float" name="data_x">magnetic field x-direction in Gs</field>
+               <field type="float" name="data_y">magnetic field y-direction in Gs</field>
+               <field type="float" name="data_z">magnetic field z-direction in Gs</field>
+          </message>
+          <message id="217" name="HUCH_DISTANCE">
+               <description>The readings for an distance sensor in meters</description>
+               <field type="uint64_t" name="usec">timestamp in microseconds</field>
+               <field type="float" name="distance">relativ distance in meter</field>
+          </message>
+          <message id="218" name="HUCH_VISUAL_NAVIGATION">
+               <field type="float" name="alt_velocity">altitude velocity</field>
+               <field type="float" name="alt_absolute">altitude absolute value</field>
+               <field type="float" name="home_beta">home direction</field>
+               <field type="float" name="home_distance">home distance</field>
+               <field type="float" name="visual_compass">visual compass</field>
+               <field type="float" name="ego_beta">lateral movement direction</field>
+               <field type="float" name="ego_speed">lateral movement speed</field>
+               <field type="int16_t" name="keypoints">tracked keypoints</field>
+               <field type="int16_t" name="error">error code</field>
+               <field type="float" name="debug">debug information</field>
+          </message>
+          <message id="219" name="HUCH_ANALOG">
+               <description>The readings for an analog sensor in meters</description>
+               <field type="uint64_t" name="usec">timestamp in microseconds</field>
+               <field type="int32_t" name="analog">analog value in ADC units</field>
+          </message>
+          <message id="220" name="HUCH_HC_RAW">
+               <description>hover control: raw altitude readings</description>
+               <field type="uint64_t" name="usec">timestamp in microseconds</field>
+               <field type="int32_t" name="raw0">raw altitude readings for logging and playback to controller</field>
+               <field type="int32_t" name="raw1">raw altitude readings for logging and playback to controller</field>
+               <field type="int32_t" name="raw2">raw altitude readings for logging and playback to controller</field>
+               <field type="int32_t" name="raw3">raw altitude readings for logging and playback to controller</field>
+               <field type="int32_t" name="raw4">raw altitude readings for logging and playback to controller</field>
+          </message>
+          <message id="221" name="HUCH_SENSOR_ARRAY">
+               <!-- <field name="seqnr" type="uint16_t">sequence number (starting with 0 on every transmission)</field> -->
+               <description>Generic sensor readings packed in locally defined order</description>
+               <field type="uint64_t" name="usec">timestamp in microseconds</field>
+               <field type="double[16]" name="data">16-vector of generic double</field>
+          </message>
+          <message id="222" name="HUCH_SIM_CTRL">
+               <!-- <field name="seqnr" type="uint16_t">sequence number (starting with 0 on every transmission)</field> -->
+               <description>Simulation environment control</description>
+               <field type="uint64_t" name="usec">timestamp in microseconds</field>
+               <field type="int16_t" name="cmd">command</field>
+               <field type="float" name="arg">command argument</field>
+          </message>
+          <message id="223" name="HUCH_EXT_CTRL">
+               <description>External control. Depending on mask the control vector will either override the RC input (bit is set) or it will be added to the RC input (bit is unset). This allows a simultaneous control.</description>
+               <field type="uint8_t" name="target_system">System ID</field>
+               <field type="uint8_t" name="target_component">Component ID</field>
+               <field type="uint8_t" name="mask">0x01 => set roll; 0x02 => set pitch; 0x04 => set yaw; 0x08 => set thrust;</field>
+               <field type="int16_t" name="roll">Desired fixed point roll angle in cdeg, i.e. a value of 300 means 3 degrees leaning to right.</field>
+               <field type="int16_t" name="pitch">Desired fixed point pitch angle in cdeg, i.e. a value of 3000 means 30 degrees.</field>
+               <field type="int16_t" name="yaw">Desired fixed point yaw angle in cdeg, i.e. a value of 1500 means 15 degrees.</field>
+               <field type="uint16_t" name="thrust">Collective thrust, normalied to 0 ... 1000.</field>
+          </message>
+          <message id="224" name="HUCH_LIN_SEN_RAW">
+               <description>huch linear sensor raw data</description>
+               <field type="uint32_t" name="msec">timestamp in milliseconds</field>
+               <field type="uint16_t[96]" name="data">data</field>
+          </message>
+          <message id="225" name="HUCH_QUAD_PIX_RAW">
+               <description>huch quad pix sensor raw data</description>
+               <field type="uint32_t" name="msec">timestamp in milliseconds</field>
+               <field type="uint16_t[4]" name="data">data</field>
+          </message>
+          <message id="226" name="HUCH_LIN_SEN_CTRL">
+               <description>huch linear sensor control</description>
+               <field type="uint32_t" name="msec">timestamp in milliseconds</field>
+               <field type="uint8_t" name="cmd">command</field>
+               <field type="uint32_t" name="arg">command argument</field>
+          </message>
+          <message id="227" name="HUCH_VISUAL_FLOW">
+               <description>huch optic flow data</description>
+               <field type="uint64_t" name="usec">timestamp in microseconds</field>
+               <field type="float" name="u">x flow (rel velocity)</field>
+               <field type="float" name="v">y flow (rel velocity)</field>
+               <field type="float" name="u_i">x flow integral (rel pos)</field>
+               <field type="float" name="v_i">y flow integral (rel pos)</field>
+          </message>
+          <message id="228" name="HUCH_POTIBOX">
+               <description>huch potibox interface item</description>
+               <field type="uint64_t" name="usec">timestamp in microseconds</field>
+               <field type="int16_t[6]" name="a">analog values 1-6</field>
+               <field type="int16_t[4]" name="d">digital values 1-4</field>
+          </message>
+          <!-- adapted from pixhawk.xml, added description -->
+          <message id="229" name="HUCH_ATTITUDE_CONTROL">
+               <description>HUCH generic attitude control input vector. The well known u = (roll, pitch, yaw, thrust)^T along with target system and a bitmask. This needs to be translated into system specifics in the output layer.</description>
+               <field type="uint8_t" name="target">The system to be controlled</field>
+               <field type="float" name="roll">roll</field>
+               <field type="float" name="pitch">pitch</field>
+               <field type="float" name="yaw">yaw</field>
+               <field type="float" name="thrust">thrust</field>
+               <field type="uint8_t" name="mask">Additive / absolute mask</field>
+               <!-- <field name="roll_manual" type="uint8_t">roll control enabled auto:0, manual:1</field> -->
+               <!-- <field name="pitch_manual" type="uint8_t">pitch auto:0, manual:1</field> -->
+               <!-- <field name="yaw_manual" type="uint8_t">yaw auto:0, manual:1</field> -->
+               <!-- <field name="thrust_manual" type="uint8_t">thrust auto:0, manual:1</field> -->
+          </message>
+          <message id="230" name="HUCH_GENERIC_CHANNEL">
+               <description>Transmit generic value over single channel with channel index</description>
+               <field type="uint64_t" name="usec">Timestamp in microseconds</field>
+               <field type="uint16_t" name="index">Channel index</field>
+               <field type="float" name="value">Channel value</field>
+          </message>
+          <message id="231" name="HUCH_ACTION">
+               <description>An action message allows to execute a certain onboard action. These include liftoff, land, storing parameters too EEPROM, shutddown, etc. The action ids are defined in ENUM MAV_ACTION in mavlink/include/mavlink_types.h</description>
+               <field type="uint8_t" name="target">The system executing the action</field>
+               <field type="uint8_t" name="target_component">The component executing the action</field>
+               <field type="uint8_t" name="action">The action id</field>
+          </message>
+     </messages>
+</mavlink>
