@@ -252,7 +252,7 @@
           <message id="225" name="HUCH_QUAD_PIX_RAW">
                <description>huch quad pix sensor raw data</description>
                <field type="uint32_t" name="msec">timestamp in milliseconds</field>
-               <field type="uint16_t[4]" name="data">data</field>
+               <field type="uint32_t[10]" name="data">data</field>
           </message>
           <message id="226" name="HUCH_LIN_SEN_CTRL">
                <description>huch linear sensor control</description>
